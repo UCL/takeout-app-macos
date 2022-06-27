@@ -39,6 +39,7 @@ struct ContentView: View {
                         }
                         
                         Text("\(inputFolderUrl)")
+                            .frame(minWidth: 400)
                     }
                     
                 }.padding(.bottom)
@@ -56,6 +57,7 @@ struct ContentView: View {
                         }
                         
                         Text("\(spreadsheetUrl)")
+                            .frame(minWidth: 400)
                     }
                     
                 }.padding(.bottom)
@@ -73,6 +75,7 @@ struct ContentView: View {
                         }
                         
                         Text("\(outputFolderUrl)")
+                            .frame(minWidth: 400)
                     }
                 }
                 
