@@ -32,7 +32,9 @@ struct MainLogic {
     }
     
     func filter(catalogue: URL?, sourceDir: URL?) {
-        
+        guard let catalogue = catalogue else { return }
+        let catalogueAccess = Catalogue(catalogue: catalogue)
+       
     }
 
 }
