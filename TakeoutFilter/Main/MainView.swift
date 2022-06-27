@@ -106,6 +106,7 @@ struct MainView: View {
     }
     
     func runFilter() {
+        logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl)
         // Implement
     }
 }

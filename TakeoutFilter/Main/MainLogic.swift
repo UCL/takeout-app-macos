@@ -30,5 +30,9 @@ struct MainLogic {
         let response = openPanel.runModal()
         return response == .OK ? openPanel.url : nil
     }
+    
+    func filter(catalogue: String?, sourceDir: String?) {
+        
+    }
 
 }
