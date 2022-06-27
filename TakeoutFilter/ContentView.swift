@@ -13,7 +13,10 @@ struct ContentView: View {
     var spreadsheetUrl: String = ""
     
     @State
-    var folderUrl: String = ""
+    var inputFolderUrl: String = ""
+    
+    @State
+    var outputFolderUrl: String = ""
     
     var body: some View {
         VStack {
@@ -30,11 +33,12 @@ struct ContentView: View {
                     HStack {
                         Button(action: {
                             let openFolderUrl = openFolder()
-                            readFolderUrl(from: openFolderUrl)
+                            readInputFolderUrl(from: openFolderUrl)
                         }) {
                             Text("Select")
                         }
-                        Text("\(folderUrl)")
+                        
+                        Text("\(inputFolderUrl)")
                     }
                     
                 }.padding(.bottom)
@@ -54,8 +58,28 @@ struct ContentView: View {
                         Text("\(spreadsheetUrl)")
                     }
                     
+                }.padding(.bottom)
+                
+                VStack(alignment: .leading) {
+                    
+                    Text("Output folder")
+                    
+                    HStack {
+                        Button(action: {
+                            let openFolderUrl = openFolder()
+                            readOutputFolderUrl(from: openFolderUrl)
+                        }) {
+                            Text("Select")
+                        }
+                        
+                        Text("\(outputFolderUrl)")
+                    }
                 }
                 
+            }.padding()
+            
+            Button(action: runFilter) {
+                Text("Run filter")
             }.padding()
             
         }
@@ -71,9 +95,14 @@ struct ContentView: View {
         return response == .OK ? openPanel.url : nil
     }
     
-    func readFolderUrl(from url: URL?) {
+    func readInputFolderUrl(from url: URL?) {
         guard let url = url else { return }
-        folderUrl = url.path
+        inputFolderUrl = url.path
+    }
+    
+    func readOutputFolderUrl(from url: URL?) {
+        guard let url = url else { return }
+        outputFolderUrl = url.path
     }
     
     func openSpreadsheet() -> URL? {
@@ -89,7 +118,11 @@ struct ContentView: View {
     
     func readSpreadsheetUrl(from url: URL?) {
         guard let url = url else { return }
-        spreadsheetUrl = url.path
+        spreadsheetUrl = url.lastPathComponent
+    }
+    
+    func runFilter() {
+        // Implement
     }
 }
 
