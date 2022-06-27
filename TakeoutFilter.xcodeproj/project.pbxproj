@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95F72869D2A000AE5371 /* MainView.swift */; };
+		9C4C95FA2869D38100AE5371 /* MainLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95F92869D38100AE5371 /* MainLogic.swift */; };
 		9C55662A2862114100CB77BB /* TakeoutFilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5566292862114100CB77BB /* TakeoutFilterApp.swift */; };
-		9C55662C2862114100CB77BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55662B2862114100CB77BB /* ContentView.swift */; };
 		9C55662E2862114600CB77BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C55662D2862114600CB77BB /* Assets.xcassets */; };
 		9C5566312862114600CB77BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5566302862114600CB77BB /* Preview Assets.xcassets */; };
 		9C55663C2862114600CB77BB /* TakeoutFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55663B2862114600CB77BB /* TakeoutFilterTests.swift */; };
@@ -34,9 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C4C95F72869D2A000AE5371 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = Main/MainView.swift; sourceTree = "<group>"; };
+		9C4C95F92869D38100AE5371 /* MainLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainLogic.swift; path = Main/MainLogic.swift; sourceTree = "<group>"; };
 		9C5566262862114100CB77BB /* TakeoutFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeoutFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5566292862114100CB77BB /* TakeoutFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeoutFilterApp.swift; sourceTree = "<group>"; };
-		9C55662B2862114100CB77BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9C55662D2862114600CB77BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C5566302862114600CB77BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9C5566322862114600CB77BB /* TakeoutFilter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TakeoutFilter.entitlements; sourceTree = "<group>"; };
@@ -96,7 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				9C5566292862114100CB77BB /* TakeoutFilterApp.swift */,
-				9C55662B2862114100CB77BB /* ContentView.swift */,
+				9C4C95F72869D2A000AE5371 /* MainView.swift */,
+				9C4C95F92869D38100AE5371 /* MainLogic.swift */,
 				9C55662D2862114600CB77BB /* Assets.xcassets */,
 				9C5566322862114600CB77BB /* TakeoutFilter.entitlements */,
 				9C55662F2862114600CB77BB /* Preview Content */,
@@ -259,8 +262,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C55662C2862114100CB77BB /* ContentView.swift in Sources */,
+				9C4C95FA2869D38100AE5371 /* MainLogic.swift in Sources */,
 				9C55662A2862114100CB77BB /* TakeoutFilterApp.swift in Sources */,
+				9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
