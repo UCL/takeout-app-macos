@@ -31,7 +31,7 @@ struct MainLogic {
         return response == .OK ? openPanel.url : nil
     }
     
-    func filter(catalogue: String?, sourceDir: String?) {
+    func filter(catalogue: URL?, sourceDir: URL?) {
         
     }
 

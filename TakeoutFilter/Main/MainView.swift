@@ -10,10 +10,11 @@ import SwiftUI
 struct MainView: View {
     
     @State
-    var spreadsheetUrl: String = ""
+    var spreadsheetUrl: URL = FileManager().homeDirectoryForCurrentUser
+        .appendingPathComponent("master-list.csv")
     
     @State
-    var inputFolderUrl: String = ""
+    var inputFolderUrl: URL = FileManager().homeDirectoryForCurrentUser
     
     @State
     var outputFolderUrl: String = ""
@@ -40,8 +41,8 @@ struct MainView: View {
                             Text("Select")
                         }
                         
-                        Text("\(inputFolderUrl)")
-                            .frame(minWidth: 400)
+                        Text(inputFolderUrl.path)
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                     
                 }.padding(.bottom)
@@ -58,8 +59,8 @@ struct MainView: View {
                             Text("Select")
                         }
                         
-                        Text("\(spreadsheetUrl)")
-                            .frame(minWidth: 400)
+                        Text(spreadsheetUrl.lastPathComponent)
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                     
                 }.padding(.bottom)
@@ -77,7 +78,7 @@ struct MainView: View {
                         }
                         
                         Text("\(outputFolderUrl)")
-                            .frame(minWidth: 400)
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                 }
                 
@@ -92,7 +93,7 @@ struct MainView: View {
     
     func readInputFolderUrl(from url: URL?) {
         guard let url = url else { return }
-        inputFolderUrl = url.path
+        inputFolderUrl = url
     }
     
     func readOutputFolderUrl(from url: URL?) {
@@ -102,7 +103,7 @@ struct MainView: View {
     
     func readSpreadsheetUrl(from url: URL?) {
         guard let url = url else { return }
-        spreadsheetUrl = url.lastPathComponent
+        spreadsheetUrl = url
     }
     
     func runFilter() {
