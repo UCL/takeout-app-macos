@@ -18,6 +18,8 @@ struct ContentView: View {
     @State
     var outputFolderUrl: String = ""
     
+    let logic = MainLogic()
+    
     var body: some View {
         VStack {
             Text("Google Takeout Filter")
@@ -32,7 +34,7 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openFolderUrl = openFolder()
+                            let openFolderUrl = logic.openFolder()
                             readInputFolderUrl(from: openFolderUrl)
                         }) {
                             Text("Select")
@@ -50,7 +52,7 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openSpreadsheetUrl = openSpreadsheet()
+                            let openSpreadsheetUrl = logic.openCsvFile()
                             readSpreadsheetUrl(from: openSpreadsheetUrl)
                         }) {
                             Text("Select")
@@ -68,7 +70,7 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openFolderUrl = openFolder()
+                            let openFolderUrl = logic.openFolder()
                             readOutputFolderUrl(from: openFolderUrl)
                         }) {
                             Text("Select")
@@ -88,16 +90,6 @@ struct ContentView: View {
         }
     }
     
-    func openFolder() -> URL? {
-        let openPanel = NSOpenPanel()
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = true
-        openPanel.canChooseFiles = false
-        
-        let response = openPanel.runModal()
-        return response == .OK ? openPanel.url : nil
-    }
-    
     func readInputFolderUrl(from url: URL?) {
         guard let url = url else { return }
         inputFolderUrl = url.path
@@ -106,17 +98,6 @@ struct ContentView: View {
     func readOutputFolderUrl(from url: URL?) {
         guard let url = url else { return }
         outputFolderUrl = url.path
-    }
-    
-    func openSpreadsheet() -> URL? {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedContentTypes = [.commaSeparatedText]
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = false
-        openPanel.canChooseFiles = true
-        
-        let response = openPanel.runModal()
-        return response == .OK ? openPanel.url : nil
     }
     
     func readSpreadsheetUrl(from url: URL?) {
