@@ -20,9 +20,11 @@ struct Catalogue {
         do {
             let stringContent = try String(contentsOfFile: catalogueUrl.path)
             let stringLines: [String] = stringContent.components(separatedBy: "\n")
-            for index in 1...stringLines.capacity {
+            for index in 1...stringLines.capacity - 1 {
                 let intId = Int(stringLines[index].components(separatedBy: ",")[0]) ?? 0
-                ids.append(intId)
+                if (intId != 0) {
+                    ids.append(intId)
+                }
             }
             return ids
         } catch {
