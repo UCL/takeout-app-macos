@@ -18,6 +18,7 @@
 		9C55663C2862114600CB77BB /* TakeoutFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C55663B2862114600CB77BB /* TakeoutFilterTests.swift */; };
 		9C5566462862114600CB77BB /* TakeoutFilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5566452862114600CB77BB /* TakeoutFilterUITests.swift */; };
 		9C5566482862114600CB77BB /* TakeoutFilterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5566472862114600CB77BB /* TakeoutFilterUITestsLaunchTests.swift */; };
+		9C698006286C957000814FDC /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 9C698005286C957000814FDC /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C698006286C957000814FDC /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +89,7 @@
 				9C55663A2862114600CB77BB /* TakeoutFilterTests */,
 				9C5566442862114600CB77BB /* TakeoutFilterUITests */,
 				9C5566272862114100CB77BB /* Products */,
+				9C698007286C958500814FDC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +144,13 @@
 			path = TakeoutFilterUITests;
 			sourceTree = "<group>";
 		};
+		9C698007286C958500814FDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,6 +167,9 @@
 			dependencies = (
 			);
 			name = TakeoutFilter;
+			packageProductDependencies = (
+				9C698005286C957000814FDC /* Zip */,
+			);
 			productName = TakeoutFilter;
 			productReference = 9C5566262862114100CB77BB /* TakeoutFilter.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +242,9 @@
 				Base,
 			);
 			mainGroup = 9C55661D2862114100CB77BB;
+			packageReferences = (
+				9C698004286C957000814FDC /* XCRemoteSwiftPackageReference "Zip" */,
+			);
 			productRefGroup = 9C5566272862114100CB77BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -586,6 +602,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9C698004286C957000814FDC /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9C698005286C957000814FDC /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C698004286C957000814FDC /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9C55661E2862114100CB77BB /* Project object */;
 }

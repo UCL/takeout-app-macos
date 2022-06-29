@@ -12,7 +12,7 @@ struct Catalogue {
     private var catalogueUrl: URL
     
     init(catalogue: URL) {
-        catalogueUrl = catalogue
+        self.catalogueUrl = catalogue
     }
     
     func entries() -> [Entry] {

@@ -7,6 +7,7 @@
 
 import AppKit
 import Foundation
+import Zip
 
 struct MainLogic {
     
@@ -33,8 +34,11 @@ struct MainLogic {
     
     func filter(catalogue: URL?, sourceDir: URL?) {
         guard let catalogue = catalogue else { return }
+        guard let sourceDir = sourceDir else { return }
         let catalogueAccess = Catalogue(catalogue: catalogue)
-       
+        for entry in catalogueAccess.entries() {
+            let takeoutUrl: URL = sourceDir.appendingPathComponent("\(entry.getId()).zip")
+        }
     }
 
 }
