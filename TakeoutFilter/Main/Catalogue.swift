@@ -11,6 +11,8 @@ struct Catalogue {
     
     private var catalogueUrl: URL
     
+    private var iso8601DateFormatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    
     init(catalogue: URL) {
         self.catalogueUrl = catalogue
     }
@@ -24,7 +26,11 @@ struct Catalogue {
                 let line: [String] = stringLines[index].components(separatedBy: ",")
                 let intId = Int(line[0]) ?? 0
                 if (intId != 0) {
-                    let e: Entry = Entry(id: intId, dateOfPresentation: line[1], namesToFilter: line[2])
+                    let datePresentation: Date? = iso8601DateFormatter.date(from: line[1])
+                    guard let datePresentation = datePresentation else {
+                        throw DateParsingError("Cannot parse date \(line[1])")
+                    }
+                    let e: Entry = Entry(id: intId, dateOfPresentation: datePresentation, namesToFilter: line[2])
                     entries.append(e)
                 }
             }
@@ -56,11 +62,11 @@ struct Catalogue {
         
         private var id: Int
         
-        private var dateOfPresentation: String
+        private var dateOfPresentation: Date
         
         private var namesToFilter: String
         
-        init(id: Int, dateOfPresentation: String, namesToFilter: String) {
+        init(id: Int, dateOfPresentation: Date, namesToFilter: String) {
             self.id = id
             self.dateOfPresentation = dateOfPresentation
             self.namesToFilter = namesToFilter
@@ -74,9 +80,17 @@ struct Catalogue {
             return namesToFilter
         }
         
-        func getDateOfPresentation() -> String {
+        func getDateOfPresentation() -> Date {
             return dateOfPresentation
         }
-
+    }
+    
+    struct DateParsingError: Error {
+        
+        private let message: String
+        
+        init(_ message: String) {
+            self.message = message
+        }
     }
 }
