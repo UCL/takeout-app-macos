@@ -11,6 +11,9 @@ import Zip
 
 struct MainLogic {
     
+    private let jsonFilter: Filter = JsonFilter()
+    private let htmlFilter: Filter = HtmlFilter()
+    
     func openFolder() -> URL? {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
@@ -35,9 +38,24 @@ struct MainLogic {
     func filter(catalogue: URL?, sourceDir: URL?) {
         guard let catalogue = catalogue else { return }
         guard let sourceDir = sourceDir else { return }
-        let catalogueAccess = Catalogue(catalogue: catalogue)
-        for entry in catalogueAccess.entries() {
+        for entry in Catalogue(catalogue: catalogue).entries() {
             let takeoutUrl: URL = sourceDir.appendingPathComponent("\(entry.getId()).zip")
+            do {
+                let destinationUrl: URL = sourceDir.appendingPathComponent("\(entry.getId())")
+                try Zip.unzipFile(takeoutUrl, destination: destinationUrl, overwrite: true, password: nil)
+                // Try for JSON file
+                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")) {
+                    // Run JsonFilter
+                }
+                // Try for HTML file
+                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")) {
+                    // Run HTML file
+                }
+                // Try for HTML file
+                // Default throw
+            } catch {
+                return
+            }
         }
     }
 
