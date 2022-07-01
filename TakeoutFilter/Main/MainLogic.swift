@@ -44,11 +44,13 @@ struct MainLogic {
                 let destinationUrl: URL = sourceDir.appendingPathComponent("\(entry.getId())")
                 try Zip.unzipFile(takeoutUrl, destination: destinationUrl, overwrite: true, password: nil)
                 // Try for JSON file
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")) {
+                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json") ||
+                    FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.json")) {
                     // Run JsonFilter
                 }
                 // Try for HTML file
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")) {
+                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html") ||
+                    FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.html")) {
                     // Run HTML file
                 }
                 // Try for HTML file
