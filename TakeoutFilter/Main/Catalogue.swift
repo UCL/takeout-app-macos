@@ -15,6 +15,7 @@ struct Catalogue {
     
     init(catalogue: URL) {
         self.catalogueUrl = catalogue
+        self.iso8601DateFormatter.formatOptions = .withFullDate
     }
     
     func entries() -> [Entry] {

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import TakeoutFilter
 
 class CatalogueTests: XCTestCase {
@@ -24,8 +25,14 @@ class CatalogueTests: XCTestCase {
         let sampleUrl: URL = URL(fileURLWithPath: "CatalogueSample.csv", relativeTo: bundle.resourceURL)
         let catalogue = Catalogue(catalogue: sampleUrl)
         let result = catalogue.entries()
-        let e1: Catalogue.Entry = Catalogue.Entry(id: 1234, dateOfPresentation: "2022-06-28", namesToFilter: "Forename Surname")
-        let e2: Catalogue.Entry = Catalogue.Entry(id: 5678, dateOfPresentation: "2022-06-28", namesToFilter: "Forename Surname")
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = .withFullDate
+        let aDate: Date? = formatter.date(from: "2022-06-28")
+        guard let aDate = aDate else {
+           return
+        }
+        let e1: Catalogue.Entry = Catalogue.Entry(id: 1234, dateOfPresentation: aDate, namesToFilter: "Forename Surname")
+        let e2: Catalogue.Entry = Catalogue.Entry(id: 5678, dateOfPresentation: aDate, namesToFilter: "Forename Surname")
         let expected: [Catalogue.Entry] = [e1, e2]
         XCTAssertEqual(result, expected)
     }
