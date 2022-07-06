@@ -15,6 +15,7 @@ struct Catalogue {
     
     init(catalogue: URL) {
         self.catalogueUrl = catalogue
+        // Configure formatter to not to expect time part. Expected string in YYYY-MM-DD format.
         self.iso8601DateFormatter.formatOptions = .withFullDate
     }
     

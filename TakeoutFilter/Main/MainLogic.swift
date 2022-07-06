@@ -45,20 +45,33 @@ struct MainLogic {
                 try Zip.unzipFile(takeoutUrl, destination: destinationUrl, overwrite: true, password: nil)
                 // Try for JSON file
                 if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")) {
-                    let activityContent: String = try! String(contentsOfFile: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")
+                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")
+                    let activityContent: Data = try Data(contentsOf: activityFile)
                     // Run JsonFilter
+                    jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    // Write to CSV
                 }
                 if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.json")) {
-                    let activityContent: String = try! String(contentsOfFile: "\(entry.getId())/Takeout/My Activity/Search/My Activity.json")
+                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/My Activity.json")
+                    let activityContent: Data = try Data(contentsOf: activityFile)
                     // Run JsonFilter
+                    jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    // Write to CSV
                 }
                 // Try for HTML file
                 if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")) {
-                    // Run HTML file
-                    let activityContent: String = try! String(contentsOfFile: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")
+                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")
+                    let activityContent: Data = try Data(contentsOf: activityFile)
+                    // Run HtmlFilter
+                    htmlFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    // Write to CSV
                 }
                 if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.html")) {
-                    let activityContent: String = try! String(contentsOfFile: "\(entry.getId())/Takeout/My Activity/Search/My Activity.html")
+                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/My Activity.html")
+                    let activityContent: Data = try Data(contentsOf: activityFile)
+                    // Run HtmlFilter
+                    htmlFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    // Write to CSV
                 }
                 // Default throw
             } catch {

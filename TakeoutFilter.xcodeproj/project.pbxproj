@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9C03B7B6286B1D8700788D53 /* CatalogueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C03B7B5286B1D8700788D53 /* CatalogueTests.swift */; };
 		9C03B7B8286B2F3B00788D53 /* CatalogueSample.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9C03B7B7286B2F3B00788D53 /* CatalogueSample.csv */; };
+		9C2FA6D728758AB30095FDFD /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FA6D628758AB30095FDFD /* Query.swift */; };
+		9C2FA6D92875AFEC0095FDFD /* MyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */; };
 		9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95F72869D2A000AE5371 /* MainView.swift */; };
 		9C4C95FA2869D38100AE5371 /* MainLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95F92869D38100AE5371 /* MainLogic.swift */; };
 		9C4C95FC286A051500AE5371 /* Catalogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4C95FB286A051500AE5371 /* Catalogue.swift */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		9C03B7B5286B1D8700788D53 /* CatalogueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueTests.swift; sourceTree = "<group>"; };
 		9C03B7B7286B2F3B00788D53 /* CatalogueSample.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatalogueSample.csv; sourceTree = "<group>"; };
+		9C2FA6D628758AB30095FDFD /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Query.swift; path = Main/Query.swift; sourceTree = "<group>"; };
+		9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyActivity.swift; path = Main/MyActivity.swift; sourceTree = "<group>"; };
 		9C4C95F72869D2A000AE5371 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainView.swift; path = Main/MainView.swift; sourceTree = "<group>"; };
 		9C4C95F92869D38100AE5371 /* MainLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainLogic.swift; path = Main/MainLogic.swift; sourceTree = "<group>"; };
 		9C4C95FB286A051500AE5371 /* Catalogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Catalogue.swift; path = Main/Catalogue.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				9C698008286CA17900814FDC /* Filter.swift */,
 				9C69800A286CA23500814FDC /* JsonFilter.swift */,
 				9C69800C286CA30A00814FDC /* HtmlFilter.swift */,
+				9C2FA6D628758AB30095FDFD /* Query.swift */,
+				9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */,
 			);
 			path = TakeoutFilter;
 			sourceTree = "<group>";
@@ -301,6 +307,8 @@
 				9C69800D286CA30A00814FDC /* HtmlFilter.swift in Sources */,
 				9C698009286CA17900814FDC /* Filter.swift in Sources */,
 				9C55662A2862114100CB77BB /* TakeoutFilterApp.swift in Sources */,
+				9C2FA6D92875AFEC0095FDFD /* MyActivity.swift in Sources */,
+				9C2FA6D728758AB30095FDFD /* Query.swift in Sources */,
 				9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */,
 				9C4C95FC286A051500AE5371 /* Catalogue.swift in Sources */,
 				9C69800B286CA23500814FDC /* JsonFilter.swift in Sources */,
