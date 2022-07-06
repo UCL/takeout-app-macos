@@ -9,7 +9,7 @@ import Foundation
 
 class HtmlFilter: Filter {
     
-    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> [Query] {
+    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> FilterOutput {
         <#code#>
     }
 

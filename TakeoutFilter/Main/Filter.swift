@@ -9,7 +9,7 @@ import Foundation
 
 protocol Filter {
     
-    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> [Query]
+    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> FilterOutput
 
 }
 
@@ -28,6 +28,10 @@ extension Filter {
     }
     
     func binaryContainsTerm(query: String) -> Bool {
+        
+    }
+    
+    func parseQueryDate(_ date: String) -> Date {
         
     }
 }

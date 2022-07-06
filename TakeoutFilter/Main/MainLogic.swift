@@ -48,14 +48,14 @@ struct MainLogic {
                     let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")
                     let activityContent: Data = try Data(contentsOf: activityFile)
                     // Run JsonFilter
-                    jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    let filterOutput: FilterOutput = jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
                     // Write to CSV
                 }
                 if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.json")) {
                     let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/My Activity.json")
                     let activityContent: Data = try Data(contentsOf: activityFile)
                     // Run JsonFilter
-                    jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+                    let filterOutput: FilterOutput = jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
                     // Write to CSV
                 }
                 // Try for HTML file
