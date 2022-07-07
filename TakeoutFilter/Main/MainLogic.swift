@@ -11,8 +11,20 @@ import Zip
 
 struct MainLogic {
     
+    private enum ActivityPath: String {
+        case json = "/Takeout/My Activity/Search/MyActivity.json"
+        case jsonSpace = "/Takeout/My Activity/Search/My Activity.json"
+        case html = "/Takeout/My Activity/Search/MyActivity.html"
+        case htmlSpace = "/Takeout/My Activity/Search/My Activity.html"
+    }
+    
+    private func getFilePath(id: Int, activityPath: ActivityPath) -> String {
+        return "\(id)\(activityPath)"
+    }
+    
     private let jsonFilter: Filter = JsonFilter()
     private let htmlFilter: Filter = HtmlFilter()
+    private let csvWriter: CsvWriter = CsvWriter()
     
     func openFolder() -> URL? {
         let openPanel = NSOpenPanel()
@@ -35,6 +47,15 @@ struct MainLogic {
         return response == .OK ? openPanel.url : nil
     }
     
+    private func doFilterAndWrite(entry: Catalogue.Entry, activityFile: URL, filter: Filter) throws {
+        let activityContent: Data = try Data(contentsOf: activityFile)
+        // Run Filter
+        let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
+        // Write to CSV
+        csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
+        csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
+    }
+    
     func filter(catalogue: URL?, sourceDir: URL?) {
         guard let catalogue = catalogue else { return }
         guard let sourceDir = sourceDir else { return }
@@ -44,34 +65,22 @@ struct MainLogic {
                 let destinationUrl: URL = sourceDir.appendingPathComponent("\(entry.getId())")
                 try Zip.unzipFile(takeoutUrl, destination: destinationUrl, overwrite: true, password: nil)
                 // Try for JSON file
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")) {
-                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/MyActivity.json")
-                    let activityContent: Data = try Data(contentsOf: activityFile)
-                    // Run JsonFilter
-                    let filterOutput: FilterOutput = jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
-                    // Write to CSV
+                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .json))) {
+                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .json))
+                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: jsonFilter)
                 }
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.json")) {
-                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/My Activity.json")
-                    let activityContent: Data = try Data(contentsOf: activityFile)
-                    // Run JsonFilter
-                    let filterOutput: FilterOutput = jsonFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
-                    // Write to CSV
+                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .jsonSpace))) {
+                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpace))
+                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: jsonFilter)
                 }
                 // Try for HTML file
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")) {
-                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/MyActivity.html")
-                    let activityContent: Data = try Data(contentsOf: activityFile)
-                    // Run HtmlFilter
-                    htmlFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
-                    // Write to CSV
+                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .html))) {
+                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .html))
+                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: htmlFilter)
                 }
-                if (FileManager.default.fileExists(atPath: "\(entry.getId())/Takeout/My Activity/Search/My Activity.html")) {
-                    let activityFile: URL = sourceDir.appendingPathComponent("\(entry.getId())/Takeout/My Activity/Search/My Activity.html")
-                    let activityContent: Data = try Data(contentsOf: activityFile)
-                    // Run HtmlFilter
-                    htmlFilter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
-                    // Write to CSV
+                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .htmlSpace))) {
+                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpace))
+                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: htmlFilter)
                 }
                 // Default throw
             } catch {

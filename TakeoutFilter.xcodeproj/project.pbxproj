@@ -25,6 +25,7 @@
 		9C698009286CA17900814FDC /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C698008286CA17900814FDC /* Filter.swift */; };
 		9C69800B286CA23500814FDC /* JsonFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69800A286CA23500814FDC /* JsonFilter.swift */; };
 		9C69800D286CA30A00814FDC /* HtmlFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69800C286CA30A00814FDC /* HtmlFilter.swift */; };
+		9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699AC72877082400C0DBC3 /* CsvWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		9C698008286CA17900814FDC /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Main/Filter.swift; sourceTree = "<group>"; };
 		9C69800A286CA23500814FDC /* JsonFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JsonFilter.swift; path = Main/JsonFilter.swift; sourceTree = "<group>"; };
 		9C69800C286CA30A00814FDC /* HtmlFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HtmlFilter.swift; path = Main/HtmlFilter.swift; sourceTree = "<group>"; };
+		9C699AC72877082400C0DBC3 /* CsvWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CsvWriter.swift; path = Main/CsvWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				9C2FA6D628758AB30095FDFD /* Query.swift */,
 				9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */,
 				9C2FA6DA2875CB670095FDFD /* FilterOutput.swift */,
+				9C699AC72877082400C0DBC3 /* CsvWriter.swift */,
 			);
 			path = TakeoutFilter;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */,
 				9C4C95FC286A051500AE5371 /* Catalogue.swift in Sources */,
 				9C69800B286CA23500814FDC /* JsonFilter.swift in Sources */,
+				9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
