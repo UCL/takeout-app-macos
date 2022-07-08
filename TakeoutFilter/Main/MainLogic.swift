@@ -52,8 +52,8 @@ struct MainLogic {
         // Run Filter
         let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
         // Write to CSV
-        csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
-        csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
+        try csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
+        try csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
     }
     
     func filter(catalogue: URL?, sourceDir: URL?) {
