@@ -26,7 +26,7 @@ class JsonFilter: Filter {
                     .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.time, presentationDate: presentationDate)}
                     .map {removeNameTokens(myActivityItem: $0, namesToFilter: namesToFilter)}
                     .map {myActivityToQuery(myActivityItem: $0)}
-                    .filter {binaryContainsTerm(query: $0.query)}
+                    .filter {containsTerm(query: $0.query)}
                 return filterOutput
             }
         } catch {

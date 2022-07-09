@@ -27,7 +27,7 @@ extension Filter {
         
     }
     
-    func binaryContainsTerm(query: String) -> Bool {
+    func containsTerm(query: String) -> Bool {
         
     }
     
