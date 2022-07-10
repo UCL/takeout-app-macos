@@ -11,12 +11,20 @@ class DataAccess {
     
     private let dataSource: DataSource
     
-    init() throws {
-        dataSource = try DataSource.openDatabase()
+    init?() {
+        do {
+            dataSource = try DataSource.openDatabase()
+        } catch {
+            return nil
+        }
     }
     
     func hasTerm(_ term: String) throws -> Bool {
         return try dataSource.selectTrueWhereTerm(term: term)
+    }
+    
+    func hasTermStemmed(_ term: String) throws -> Bool {
+        
     }
 
 }

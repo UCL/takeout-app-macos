@@ -26,6 +26,7 @@
 		9C69800B286CA23500814FDC /* JsonFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69800A286CA23500814FDC /* JsonFilter.swift */; };
 		9C69800D286CA30A00814FDC /* HtmlFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69800C286CA30A00814FDC /* HtmlFilter.swift */; };
 		9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699AC72877082400C0DBC3 /* CsvWriter.swift */; };
+		9C727924287B216100E770FA /* NGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C727923287B216100E770FA /* NGram.swift */; };
 		9CAC1DB6287A363A00FF6DCF /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */; };
 		9CDDFB022879D2ED005EC7D5 /* TakeoutFilter.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */; };
 		9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDFB032879D5BB005EC7D5 /* DataSource.swift */; };
@@ -71,6 +72,7 @@
 		9C69800A286CA23500814FDC /* JsonFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JsonFilter.swift; path = Main/JsonFilter.swift; sourceTree = "<group>"; };
 		9C69800C286CA30A00814FDC /* HtmlFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HtmlFilter.swift; path = Main/HtmlFilter.swift; sourceTree = "<group>"; };
 		9C699AC72877082400C0DBC3 /* CsvWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CsvWriter.swift; path = Main/CsvWriter.swift; sourceTree = "<group>"; };
+		9C727923287B216100E770FA /* NGram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NGram.swift; path = Main/NGram.swift; sourceTree = "<group>"; };
 		9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataAccess.swift; path = Data/DataAccess.swift; sourceTree = "<group>"; };
 		9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */ = {isa = PBXFileReference; lastKnownFileType = text; name = TakeoutFilter.sqlite; path = Resources/TakeoutFilter.sqlite; sourceTree = "<group>"; };
 		9CDDFB032879D5BB005EC7D5 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Data/DataSource.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */,
 				9CDDFB032879D5BB005EC7D5 /* DataSource.swift */,
 				9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */,
+				9C727923287B216100E770FA /* NGram.swift */,
 			);
 			path = TakeoutFilter;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				9C4C95FC286A051500AE5371 /* Catalogue.swift in Sources */,
 				9C69800B286CA23500814FDC /* JsonFilter.swift in Sources */,
 				9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */,
+				9C727924287B216100E770FA /* NGram.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

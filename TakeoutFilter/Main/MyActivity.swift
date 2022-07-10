@@ -10,9 +10,12 @@ import Foundation
 struct MyActivity {
     
     let header: String
-    let title: String
+    var title: String
     let titleUrl: String
     let time: String
     let products: [String]
 
+    func setTitle(_ title: String) {
+        self.title = title
+    }
 }
