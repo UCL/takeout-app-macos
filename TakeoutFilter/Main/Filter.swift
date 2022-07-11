@@ -17,7 +17,7 @@ class FilterBase {
 
 protocol Filter {
     
-    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> FilterOutput
+    func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput
 
 }
 
@@ -54,11 +54,12 @@ extension Filter {
     
     func removeNameTokens(myActivityItem: MyActivity, namesToFilter: String) -> MyActivity {
         let names: [String] = namesToFilter.components(separatedBy: .whitespacesAndNewlines)
+        var queryTitle = myActivityItem.title
         for n in names {
-            let newTitle = myActivityItem.title.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
-            myActivityItem.setTitle(newTitle)
+            queryTitle = myActivityItem.title.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
         }
-        return myActivityItem
+        let result = MyActivity(header: myActivityItem.header, title: queryTitle, titleUrl: myActivityItem.titleUrl, time: myActivityItem.time, products: myActivityItem.products)
+        return result
     }
     
     func myActivityToQuery(myActivityItem: MyActivity) -> Query {

@@ -28,6 +28,7 @@
 		9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699AC72877082400C0DBC3 /* CsvWriter.swift */; };
 		9C727924287B216100E770FA /* NGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C727923287B216100E770FA /* NGram.swift */; };
 		9CAC1DB6287A363A00FF6DCF /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */; };
+		9CC0CBE2287C272E00FE3536 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9CC0CBE1287C272E00FE3536 /* SwiftSoup */; };
 		9CDDFB022879D2ED005EC7D5 /* TakeoutFilter.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */; };
 		9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDFB032879D5BB005EC7D5 /* DataSource.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C698006286C957000814FDC /* Zip in Frameworks */,
+				9CC0CBE2287C272E00FE3536 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +204,7 @@
 			name = TakeoutFilter;
 			packageProductDependencies = (
 				9C698005286C957000814FDC /* Zip */,
+				9CC0CBE1287C272E00FE3536 /* SwiftSoup */,
 			);
 			productName = TakeoutFilter;
 			productReference = 9C5566262862114100CB77BB /* TakeoutFilter.app */;
@@ -277,6 +280,7 @@
 			mainGroup = 9C55661D2862114100CB77BB;
 			packageReferences = (
 				9C698004286C957000814FDC /* XCRemoteSwiftPackageReference "Zip" */,
+				9CC0CBE0287C272E00FE3536 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 9C5566272862114100CB77BB /* Products */;
 			projectDirPath = "";
@@ -656,6 +660,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		9CC0CBE0287C272E00FE3536 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -663,6 +675,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9C698004286C957000814FDC /* XCRemoteSwiftPackageReference "Zip" */;
 			productName = Zip;
+		};
+		9CC0CBE1287C272E00FE3536 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CC0CBE0287C272E00FE3536 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

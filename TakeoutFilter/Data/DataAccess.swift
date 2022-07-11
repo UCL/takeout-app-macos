@@ -24,7 +24,7 @@ class DataAccess {
     }
     
     func hasTermStemmed(_ term: String) throws -> Bool {
-        
+        return Bool()
     }
 
 }

@@ -9,13 +9,16 @@ import Foundation
 
 class JsonFilter: FilterBase, Filter {
     
-    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> FilterOutput {
+    func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput {
         guard let dataAccess = dataAccess else {
             return FilterOutput()
         }
+        guard let data = content.data(using: .utf8) else {
+            return FilterOutput()
+        }
         do {
-            let json = try JSONSerialization.jsonObject(with: content)
-            if var queries = json as? [MyActivity] {
+            let json = try JSONSerialization.jsonObject(with: data)
+            if let queries = json as? [MyActivity] {
                 var filterOutput: FilterOutput = FilterOutput()
                 filterOutput.firstQueryDate = queries
                     .filter {$0.title.starts(with: "Searched for ")}
@@ -35,6 +38,7 @@ class JsonFilter: FilterBase, Filter {
         } catch {
             return FilterOutput()
         }
+        return FilterOutput()
     }
 
 }

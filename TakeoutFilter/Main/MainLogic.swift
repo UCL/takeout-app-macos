@@ -48,7 +48,7 @@ struct MainLogic {
     }
     
     private func doFilterAndWrite(entry: Catalogue.Entry, activityFile: URL, filter: Filter) throws {
-        let activityContent: Data = try Data(contentsOf: activityFile)
+        let activityContent: String = try String(contentsOf: activityFile)
         // Run Filter
         let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
         // Write to CSV

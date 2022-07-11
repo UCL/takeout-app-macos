@@ -6,11 +6,15 @@
 //
 
 import Foundation
+import SwiftSoup
 
-class HtmlFilter: Filter {
+class HtmlFilter: FilterBase, Filter {
     
-    func filterQueries(content: Data, presentationDate: Date, namesToFilter: String) -> FilterOutput {
-        <#code#>
+    func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput {
+        guard let dataAccess = dataAccess else {
+            return FilterOutput()
+        }
+        return FilterOutput()
     }
 
 }
