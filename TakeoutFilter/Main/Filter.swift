@@ -28,7 +28,7 @@ extension Filter {
             .components(separatedBy: CharacterSet.punctuationCharacters)
             .joined(separator: " ")
             .components(separatedBy: .whitespacesAndNewlines)
-        if words.capacity == 1 {
+        if words.count == 1 {
             return [NGram(query: words[0], isMono: true)]
         }
         // contains the n in n-gram where n > 1
@@ -37,7 +37,7 @@ extension Filter {
         
         var queryAsNGrams: [NGram] = words.map { NGram(query: $0, isMono: true) }
         for n in nsize {
-            for i in 0...words.capacity-n {
+            for i in 0...words.count-n {
                 let ngram = words[i...i+n].joined(separator: " ")
                 queryAsNGrams.append(NGram(query: ngram, isMono: false))
             }
@@ -52,20 +52,24 @@ extension Filter {
         return result
     }
     
-    func removeNameTokens(myActivityItem: MyActivity, namesToFilter: String) -> MyActivity {
+    func removeNameTokens(myActivityItem: MyActivity, namesToFilter: String) -> Query {
         let names: [String] = namesToFilter.components(separatedBy: .whitespacesAndNewlines)
         var queryTitle = myActivityItem.title
         for n in names {
             queryTitle = myActivityItem.title.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
         }
-        let result = MyActivity(header: myActivityItem.header, title: queryTitle, titleUrl: myActivityItem.titleUrl, time: myActivityItem.time, products: myActivityItem.products)
-        return result
+        let qDate = parseQueryDate(myActivityItem.time)
+        return Query(query: queryTitle, date: qDate)
     }
     
-    func myActivityToQuery(myActivityItem: MyActivity) -> Query {
-        let date: Date = parseQueryDate(myActivityItem.time)
-        let query: String = myActivityItem.title
-        return Query(query: query, date: date)
+    func removeNameTokens(myActivityHtmlItem: MyActivityHtml, namesToFilter: String) -> Query {
+        let names: [String] = namesToFilter.components(separatedBy: .whitespacesAndNewlines)
+        var queryText = myActivityHtmlItem.query
+        for n in names {
+            queryText = myActivityHtmlItem.query.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
+        }
+        let qDate = parseQueryDate(myActivityHtmlItem.date)
+        return Query(query: queryText, date: qDate)
     }
     
     func containsTerm(query: String, dataAccess: DataAccess) throws -> Bool {

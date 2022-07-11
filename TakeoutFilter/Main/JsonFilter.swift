@@ -19,19 +19,16 @@ class JsonFilter: FilterBase, Filter {
         do {
             let json = try JSONSerialization.jsonObject(with: data)
             if let queries = json as? [MyActivity] {
-                var filterOutput: FilterOutput = FilterOutput()
-                filterOutput.firstQueryDate = queries
+                let baseFiltered = queries
                     .filter {$0.title.starts(with: "Searched for ")}
+                var filterOutput: FilterOutput = FilterOutput()
+                filterOutput.firstQueryDate = baseFiltered
                     .map {parseQueryDate($0.time)}
                     .min()!
-                filterOutput.totalNumberOfQueries = queries
-                    .filter {$0.title.starts(with: "Searched for ")}
-                    .count
-                filterOutput.filteredQueries = try queries
-                    .filter {$0.title.starts(with: "Searched for ")}
+                filterOutput.totalNumberOfQueries = baseFiltered.count
+                filterOutput.filteredQueries = try baseFiltered
                     .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.time, presentationDate: presentationDate)}
                     .map {removeNameTokens(myActivityItem: $0, namesToFilter: namesToFilter)}
-                    .map {myActivityToQuery(myActivityItem: $0)}
                     .filter {try containsTerm(query: $0.query, dataAccess: dataAccess)}
                 return filterOutput
             }

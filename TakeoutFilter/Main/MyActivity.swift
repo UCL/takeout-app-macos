@@ -14,5 +14,13 @@ struct MyActivity {
     let titleUrl: String
     let time: String
     let products: [String]
+    
+}
 
+struct MyActivityHtml {
+    
+    let type: String
+    let query: String
+    let date: String
+    
 }
