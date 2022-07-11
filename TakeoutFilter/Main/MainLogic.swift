@@ -56,9 +56,9 @@ struct MainLogic {
         try csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
     }
     
-    func filter(catalogue: URL?, sourceDir: URL?) -> FilterPayback {
-        guard let catalogue = catalogue else { return FilterPayback(id: FilterResultType.error, message: "Cannot open catalogue") }
-        guard let sourceDir = sourceDir else { return FilterPayback(id: FilterResultType.error, message: "Cannot open source directory") }
+    func filter(catalogue: URL?, sourceDir: URL?, progress: (Double) -> Void) -> FilterPayback {
+        guard let catalogue = catalogue else { return FilterPayback(id: FilterResultType.error, message: "Cannot find catalogue at given URL") }
+        guard let sourceDir = sourceDir else { return FilterPayback(id: FilterResultType.error, message: "Cannot find source directory URL") }
         for entry in Catalogue(catalogue: catalogue).entries() {
             let takeoutUrl: URL = sourceDir.appendingPathComponent("\(entry.getId()).zip")
             do {

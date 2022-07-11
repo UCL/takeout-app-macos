@@ -25,6 +25,9 @@ struct MainView: View {
     @State
     private var filterPayback: FilterPayback?
     
+    @State
+    private var filteringProgress: Double = 0.0
+    
     let logic = MainLogic()
     
     var body: some View {
@@ -92,6 +95,10 @@ struct MainView: View {
             
             Button(action: runFilter) {
                 Text("Run filter")
+            }
+            
+            VStack {
+                ProgressView("Filtering... ", value: filteringProgress, total: 100)
             }.padding()
             
             .alert("Notification", isPresented: $displayMessage, presenting: filterPayback, actions: {payback in
@@ -116,8 +123,12 @@ struct MainView: View {
         spreadsheetUrl = url
     }
     
+    func progressCallback(_ progress: Double) {
+        filteringProgress = progress
+    }
+    
     func runFilter() {
-        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl)
+        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl, progress: progressCallback)
         displayMessage = true
         // Implement
     }
