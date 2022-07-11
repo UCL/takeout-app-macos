@@ -19,6 +19,12 @@ struct MainView: View {
     @State
     var outputFolderUrl: String = ""
     
+    @State
+    private var displayMessage = false
+    
+    @State
+    private var filterPayback: FilterPayback?
+    
     let logic = MainLogic()
     
     var body: some View {
@@ -88,6 +94,10 @@ struct MainView: View {
                 Text("Run filter")
             }.padding()
             
+            .alert("Notification", isPresented: $displayMessage, presenting: filterPayback, actions: {payback in
+                    Text("")}, message:{payback in Text(payback.message)})
+            
+
         }
     }
     
@@ -107,7 +117,8 @@ struct MainView: View {
     }
     
     func runFilter() {
-        logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl)
+        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl)
+        displayMessage = true
         // Implement
     }
 }

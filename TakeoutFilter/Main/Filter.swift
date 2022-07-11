@@ -15,6 +15,16 @@ class FilterBase {
 
 }
 
+enum FilterResultType: Hashable {
+    case success
+    case error
+}
+
+struct FilterPayback: Identifiable {
+    let id: FilterResultType
+    let message: String
+}
+
 protocol Filter {
     
     func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput
