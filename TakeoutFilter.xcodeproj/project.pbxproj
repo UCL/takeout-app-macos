@@ -27,6 +27,8 @@
 		9C69800D286CA30A00814FDC /* HtmlFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C69800C286CA30A00814FDC /* HtmlFilter.swift */; };
 		9C699AC82877082400C0DBC3 /* CsvWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C699AC72877082400C0DBC3 /* CsvWriter.swift */; };
 		9C727924287B216100E770FA /* NGram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C727923287B216100E770FA /* NGram.swift */; };
+		9CA4F685288075C9009D1498 /* porterstemmer_ansi_thread_safe.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */; };
+		9CA4F6892880767D009D1498 /* PorterStemmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4F6882880767D009D1498 /* PorterStemmer.swift */; };
 		9CAC1DB6287A363A00FF6DCF /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */; };
 		9CC0CBE2287C272E00FE3536 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9CC0CBE1287C272E00FE3536 /* SwiftSoup */; };
 		9CDDFB022879D2ED005EC7D5 /* TakeoutFilter.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */; };
@@ -74,6 +76,9 @@
 		9C69800C286CA30A00814FDC /* HtmlFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HtmlFilter.swift; path = Main/HtmlFilter.swift; sourceTree = "<group>"; };
 		9C699AC72877082400C0DBC3 /* CsvWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CsvWriter.swift; path = Main/CsvWriter.swift; sourceTree = "<group>"; };
 		9C727923287B216100E770FA /* NGram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NGram.swift; path = Main/NGram.swift; sourceTree = "<group>"; };
+		9CA4F683288075C9009D1498 /* TakeoutFilter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TakeoutFilter-Bridging-Header.h"; sourceTree = "<group>"; };
+		9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = porterstemmer_ansi_thread_safe.c; path = Stemmer/porterstemmer_ansi_thread_safe.c; sourceTree = "<group>"; };
+		9CA4F6882880767D009D1498 /* PorterStemmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PorterStemmer.swift; path = Stemmer/PorterStemmer.swift; sourceTree = "<group>"; };
 		9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataAccess.swift; path = Data/DataAccess.swift; sourceTree = "<group>"; };
 		9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */ = {isa = PBXFileReference; lastKnownFileType = text; name = TakeoutFilter.sqlite; path = Resources/TakeoutFilter.sqlite; sourceTree = "<group>"; };
 		9CDDFB032879D5BB005EC7D5 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Data/DataSource.swift; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 				9CDDFB032879D5BB005EC7D5 /* DataSource.swift */,
 				9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */,
 				9C727923287B216100E770FA /* NGram.swift */,
+				9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */,
+				9CA4F683288075C9009D1498 /* TakeoutFilter-Bridging-Header.h */,
+				9CA4F6882880767D009D1498 /* PorterStemmer.swift */,
 			);
 			path = TakeoutFilter;
 			sourceTree = "<group>";
@@ -258,6 +266,7 @@
 				TargetAttributes = {
 					9C5566252862114100CB77BB = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					9C5566362862114600CB77BB = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -331,7 +340,9 @@
 				9C69800D286CA30A00814FDC /* HtmlFilter.swift in Sources */,
 				9C698009286CA17900814FDC /* Filter.swift in Sources */,
 				9C55662A2862114100CB77BB /* TakeoutFilterApp.swift in Sources */,
+				9CA4F685288075C9009D1498 /* porterstemmer_ansi_thread_safe.c in Sources */,
 				9C2FA6DB2875CB670095FDFD /* FilterOutput.swift in Sources */,
+				9CA4F6892880767D009D1498 /* PorterStemmer.swift in Sources */,
 				9C2FA6D92875AFEC0095FDFD /* MyActivity.swift in Sources */,
 				9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */,
 				9C2FA6D728758AB30095FDFD /* Query.swift in Sources */,
@@ -495,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TakeoutFilter/TakeoutFilter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -512,6 +524,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ucl.cs.TakeoutFilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TakeoutFilter/TakeoutFilter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -521,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TakeoutFilter/TakeoutFilter.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -538,6 +553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ucl.cs.TakeoutFilter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TakeoutFilter/TakeoutFilter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
