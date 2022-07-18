@@ -431,6 +431,38 @@ void stemfile(struct stemmer * z, FILE * f)
    }
 }
 
+const char * stemchars(struct stemmer * z, const char * b) {
+    int bSize = 0;
+    bSize = (int) strlen(b);
+    
+    int i;
+    int ch = 0;
+    for (i = 0; i < bSize; i++) {
+        ch = (int) b[i];
+        ch = tolower(ch);
+        s[i] = ch;
+    }
+    s[stem(z, s, i - 1) + 1] = 0;
+    /* the previous line calls the stemmer and uses its result to
+       zero-terminate the string in s */
+    
+    char * result;
+    int sSize = 0;
+    sSize = (int) strlen(s);
+    result = (char *) malloc(sSize + 1);
+    strcat(result, s);
+    return result;
+}
+
+void initialiseS(void) {
+    s = (char *) malloc(i_max + 1);
+}
+
+void freeS(void) {
+    free(s);
+}
+
+/*
 int main(int argc, char * argv[])
 {  int i;
 
@@ -448,4 +480,4 @@ int main(int argc, char * argv[])
 
    return 0;
 }
-
+*/
