@@ -68,7 +68,7 @@ extension DataSource {
     }
     
     func selectTrueWhereTerm(term: String) throws -> Bool {
-        let querySql = "SELECT 1 FROM MEDICAL_TERMS WHERE TERM = ?;"
+        let querySql = "SELECT EXISTS (SELECT 1 FROM MEDICAL_TERMS WHERE TERM = ?);"
         guard let queryStmt = try prepareStatement(statement: querySql) else {
             return false
         }
@@ -76,6 +76,23 @@ extension DataSource {
             sqlite3_finalize(queryStmt)
         }
         guard sqlite3_bind_text(queryStmt, 1, term, -1, nil) == SQLITE_OK else {
+            throw DataSourceError.Bind(message: "Failed to bind String to statement")
+        }
+        guard sqlite3_step(queryStmt) == SQLITE_ROW else {
+            throw DataSourceError.Step(message: "Failed to run query and return row")
+        }
+        return sqlite3_column_int(queryStmt, 0) == 1
+    }
+    
+    func selectTrueWhereStem(stem: String) throws -> Bool {
+        let querySql = "SELECT EXISTS (SELECT 1 FROM MEDICAL_TERM_STEMS WHERE STEM = ?);"
+        guard let queryStmt = try prepareStatement(statement: querySql) else {
+            return false
+        }
+        defer {
+            sqlite3_finalize(queryStmt)
+        }
+        guard sqlite3_bind_text(queryStmt, 1, stem, -1, nil) == SQLITE_OK else {
             throw DataSourceError.Bind(message: "Failed to bind String to statement")
         }
         guard sqlite3_step(queryStmt) == SQLITE_ROW else {

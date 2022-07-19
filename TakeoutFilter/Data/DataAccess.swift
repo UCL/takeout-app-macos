@@ -23,8 +23,8 @@ class DataAccess {
         return try dataSource.selectTrueWhereTerm(term: term)
     }
     
-    func hasTermStemmed(_ term: String) throws -> Bool {
-        return Bool()
+    func hasTermStemmed(_ stem: String) throws -> Bool {
+        return try dataSource.selectTrueWhereStem(stem: stem)
     }
 
 }
