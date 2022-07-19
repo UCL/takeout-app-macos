@@ -34,6 +34,8 @@
 		9CC0CBE2287C272E00FE3536 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9CC0CBE1287C272E00FE3536 /* SwiftSoup */; };
 		9CDDFB022879D2ED005EC7D5 /* TakeoutFilter.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */; };
 		9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDFB032879D5BB005EC7D5 /* DataSource.swift */; };
+		9CDFBD302886CF25005CD08A /* PorterStemmerInput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9CDFBD2F2886CF25005CD08A /* PorterStemmerInput.txt */; };
+		9CDFBD322886CFBC005CD08A /* PorterStemmerOutput.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9CDFBD312886CFBC005CD08A /* PorterStemmerOutput.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataAccess.swift; path = Data/DataAccess.swift; sourceTree = "<group>"; };
 		9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */ = {isa = PBXFileReference; lastKnownFileType = text; name = TakeoutFilter.sqlite; path = Resources/TakeoutFilter.sqlite; sourceTree = "<group>"; };
 		9CDDFB032879D5BB005EC7D5 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Data/DataSource.swift; sourceTree = "<group>"; };
+		9CDFBD2F2886CF25005CD08A /* PorterStemmerInput.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = PorterStemmerInput.txt; sourceTree = "<group>"; };
+		9CDFBD312886CFBC005CD08A /* PorterStemmerOutput.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = PorterStemmerOutput.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,8 @@
 				9C03B7B5286B1D8700788D53 /* CatalogueTests.swift */,
 				9C03B7B7286B2F3B00788D53 /* CatalogueSample.csv */,
 				9C4EBC742885844000302F50 /* PorterStemmerTests.swift */,
+				9CDFBD2F2886CF25005CD08A /* PorterStemmerInput.txt */,
+				9CDFBD312886CFBC005CD08A /* PorterStemmerOutput.txt */,
 			);
 			path = TakeoutFilterTests;
 			sourceTree = "<group>";
@@ -321,6 +327,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C03B7B8286B2F3B00788D53 /* CatalogueSample.csv in Resources */,
+				9CDFBD302886CF25005CD08A /* PorterStemmerInput.txt in Resources */,
+				9CDFBD322886CFBC005CD08A /* PorterStemmerOutput.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
