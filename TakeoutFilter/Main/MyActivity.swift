@@ -7,14 +7,12 @@
 
 import Foundation
 
-struct MyActivity {
+struct MyActivity: Decodable {
     
     let header: String
     let title: String
-    let titleUrl: String
     let time: String
-    let products: [String]
-    
+
 }
 
 struct MyActivityHtml {

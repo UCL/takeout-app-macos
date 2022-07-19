@@ -11,7 +11,9 @@ class FilterBase {
     
     let dataAccess: DataAccess? = DataAccess()
     
-    static let dateFormatter: ISO8601DateFormatter = ISO8601DateFormatter()
+    static let dateFormatter: ISO8601DateFormatter = ISODateFormatter().obtainFormatter()
+    
+    let porterStemmer = PorterStemmer()
 
 }
 
@@ -55,6 +57,13 @@ extension Filter {
         return queryAsNGrams
     }
     
+    func extractWords(_ query: String) -> [String] {
+        return query.lowercased()
+            .components(separatedBy: CharacterSet.punctuationCharacters)
+            .joined(separator: " ")
+            .components(separatedBy: .whitespacesAndNewlines)
+    }
+    
     func isDateWithinTwoYearsBeforePresentation(queryDate: String, presentationDate: Date) -> Bool {
         let qDate = parseQueryDate(queryDate)
         let twoYearsPresDate = presentationDate.addingTimeInterval(-60 * 60 * 24 * 365 * 2)
@@ -82,11 +91,11 @@ extension Filter {
         return Query(query: queryText, date: qDate)
     }
     
-    func containsTerm(query: String, dataAccess: DataAccess) throws -> Bool {
-        let result = try extractWordNGrams(query).first {
-            $0.isMono ? try dataAccess.hasTerm($0.query) : try dataAccess.hasTermStemmed($0.query)
-        }
-        return result == nil
+    func containsTerm(query: String, stemmer: PorterStemmer, dataAccess: DataAccess) throws -> Bool {
+        let result = try extractWords(query)
+            .map { stemmer.runStemmer($0) }
+            .first { try dataAccess.hasTermStemmed($0) }
+        return result != nil
     }
     
     func parseQueryDate(_ date: String) -> Date {

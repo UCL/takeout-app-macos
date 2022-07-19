@@ -11,31 +11,35 @@ class JsonFilter: FilterBase, Filter {
     
     func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput {
         guard let dataAccess = dataAccess else {
-            return FilterOutput()
+            var output = FilterOutput()
+            output.outcome = .failedDataAccess
+            return output
         }
         guard let data = content.data(using: .utf8) else {
-            return FilterOutput()
+            var output = FilterOutput()
+            output.outcome = .failedData
+            return output
         }
         do {
-            let json = try JSONSerialization.jsonObject(with: data)
-            if let queries = json as? [MyActivity] {
-                let baseFiltered = queries
-                    .filter {$0.title.starts(with: "Searched for ")}
-                var filterOutput: FilterOutput = FilterOutput()
-                filterOutput.firstQueryDate = baseFiltered
-                    .map {parseQueryDate($0.time)}
-                    .min()!
-                filterOutput.totalNumberOfQueries = baseFiltered.count
-                filterOutput.filteredQueries = try baseFiltered
-                    .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.time, presentationDate: presentationDate)}
-                    .map {removeNameTokens(myActivityItem: $0, namesToFilter: namesToFilter)}
-                    .filter {try containsTerm(query: $0.query, dataAccess: dataAccess)}
-                return filterOutput
-            }
+            let queries = try JSONDecoder().decode([MyActivity].self, from: data)
+            let baseFiltered = queries
+                .filter {$0.title.starts(with: "Searched for ")}
+            var filterOutput: FilterOutput = FilterOutput()
+            filterOutput.firstQueryDate = baseFiltered
+                .map {parseQueryDate($0.time)}
+                .min()!
+            filterOutput.totalNumberOfQueries = baseFiltered.count
+            filterOutput.filteredQueries = try baseFiltered
+                .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.time, presentationDate: presentationDate)}
+                .map {removeNameTokens(myActivityItem: $0, namesToFilter: namesToFilter)}
+                .filter {try containsTerm(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
+            filterOutput.outcome = .success
+            return filterOutput
         } catch {
-            return FilterOutput()
+            var output = FilterOutput()
+            output.outcome = .error
+            return output
         }
-        return FilterOutput()
     }
 
 }

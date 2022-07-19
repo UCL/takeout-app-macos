@@ -10,7 +10,7 @@ import SQLite3
 
 class DataSource {
     
-    private static let databaseFile: String = "Resources/TakeoutFilter"
+    private static let databaseFile: String = "TakeoutFilter"
     
     private let databasePointer: OpaquePointer?
     

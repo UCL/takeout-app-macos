@@ -42,7 +42,7 @@ class HtmlFilter: FilterBase, Filter {
             filterOutput.filteredQueries = try baseFiltered
                 .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.date, presentationDate: presentationDate)}
                 .map {removeNameTokens(myActivityHtmlItem: $0, namesToFilter: namesToFilter)}
-                .filter {try containsTerm(query: $0.query, dataAccess: dataAccess)}
+                .filter {try containsTerm(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
             return filterOutput
         } catch {
             return FilterOutput()
