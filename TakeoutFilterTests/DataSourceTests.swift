@@ -10,7 +10,7 @@ import XCTest
 
 class DataSourceTests: XCTestCase {
     
-    func testOpenDataSource() throws {
-        let dataSource = try DataSource.openDatabase()
+    func testOpenDataSource() {
+        XCTAssertNoThrow(try DataSource.openDatabase())
     }
 }
