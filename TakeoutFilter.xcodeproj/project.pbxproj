@@ -31,6 +31,8 @@
 		9CA4F685288075C9009D1498 /* porterstemmer_ansi_thread_safe.c in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */; };
 		9CA4F6892880767D009D1498 /* PorterStemmer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4F6882880767D009D1498 /* PorterStemmer.swift */; };
 		9CAC1DB6287A363A00FF6DCF /* DataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */; };
+		9CAD801428883E4D00C2A814 /* MyActivity.html in Resources */ = {isa = PBXBuildFile; fileRef = 9CAD801328883E4D00C2A814 /* MyActivity.html */; };
+		9CAD801628886BC400C2A814 /* QueryDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD801528886BC400C2A814 /* QueryDateFormatterTests.swift */; };
 		9CC0CBE2287C272E00FE3536 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9CC0CBE1287C272E00FE3536 /* SwiftSoup */; };
 		9CDDFB022879D2ED005EC7D5 /* TakeoutFilter.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */; };
 		9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDDFB032879D5BB005EC7D5 /* DataSource.swift */; };
@@ -39,7 +41,7 @@
 		9CDFBD342886F0CF005CD08A /* MyActivity.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CDFBD332886F0CF005CD08A /* MyActivity.json */; };
 		9CDFBD362886F30C005CD08A /* FilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFBD352886F30C005CD08A /* FilterTests.swift */; };
 		9CDFBD38288708EF005CD08A /* DataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFBD37288708EF005CD08A /* DataSourceTests.swift */; };
-		9CDFBD3B28872686005CD08A /* ISODateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFBD3A28872686005CD08A /* ISODateFormatter.swift */; };
+		9CDFBD3B28872686005CD08A /* QueryDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFBD3A28872686005CD08A /* QueryDateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = porterstemmer_ansi_thread_safe.c; path = Stemmer/porterstemmer_ansi_thread_safe.c; sourceTree = "<group>"; };
 		9CA4F6882880767D009D1498 /* PorterStemmer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PorterStemmer.swift; path = Stemmer/PorterStemmer.swift; sourceTree = "<group>"; };
 		9CAC1DB5287A363A00FF6DCF /* DataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataAccess.swift; path = Data/DataAccess.swift; sourceTree = "<group>"; };
+		9CAD801328883E4D00C2A814 /* MyActivity.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = MyActivity.html; sourceTree = "<group>"; };
+		9CAD801528886BC400C2A814 /* QueryDateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryDateFormatterTests.swift; sourceTree = "<group>"; };
 		9CDDFB012879D2ED005EC7D5 /* TakeoutFilter.sqlite */ = {isa = PBXFileReference; lastKnownFileType = text; name = TakeoutFilter.sqlite; path = Resources/TakeoutFilter.sqlite; sourceTree = "<group>"; };
 		9CDDFB032879D5BB005EC7D5 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = Data/DataSource.swift; sourceTree = "<group>"; };
 		9CDFBD2F2886CF25005CD08A /* PorterStemmerInput.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = PorterStemmerInput.txt; sourceTree = "<group>"; };
@@ -95,7 +99,7 @@
 		9CDFBD332886F0CF005CD08A /* MyActivity.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MyActivity.json; sourceTree = "<group>"; };
 		9CDFBD352886F30C005CD08A /* FilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTests.swift; sourceTree = "<group>"; };
 		9CDFBD37288708EF005CD08A /* DataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceTests.swift; sourceTree = "<group>"; };
-		9CDFBD3A28872686005CD08A /* ISODateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ISODateFormatter.swift; path = Main/ISODateFormatter.swift; sourceTree = "<group>"; };
+		9CDFBD3A28872686005CD08A /* QueryDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueryDateFormatter.swift; path = Main/QueryDateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +174,7 @@
 				9CA4F684288075C9009D1498 /* porterstemmer_ansi_thread_safe.c */,
 				9CA4F683288075C9009D1498 /* TakeoutFilter-Bridging-Header.h */,
 				9CA4F6882880767D009D1498 /* PorterStemmer.swift */,
-				9CDFBD3A28872686005CD08A /* ISODateFormatter.swift */,
+				9CDFBD3A28872686005CD08A /* QueryDateFormatter.swift */,
 			);
 			path = TakeoutFilter;
 			sourceTree = "<group>";
@@ -195,6 +199,8 @@
 				9CDFBD332886F0CF005CD08A /* MyActivity.json */,
 				9CDFBD352886F30C005CD08A /* FilterTests.swift */,
 				9CDFBD37288708EF005CD08A /* DataSourceTests.swift */,
+				9CAD801328883E4D00C2A814 /* MyActivity.html */,
+				9CAD801528886BC400C2A814 /* QueryDateFormatterTests.swift */,
 			);
 			path = TakeoutFilterTests;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				9C03B7B8286B2F3B00788D53 /* CatalogueSample.csv in Resources */,
 				9CDFBD302886CF25005CD08A /* PorterStemmerInput.txt in Resources */,
 				9CDFBD342886F0CF005CD08A /* MyActivity.json in Resources */,
+				9CAD801428883E4D00C2A814 /* MyActivity.html in Resources */,
 				9CDFBD322886CFBC005CD08A /* PorterStemmerOutput.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,7 +375,7 @@
 				9C2FA6DB2875CB670095FDFD /* FilterOutput.swift in Sources */,
 				9CA4F6892880767D009D1498 /* PorterStemmer.swift in Sources */,
 				9C2FA6D92875AFEC0095FDFD /* MyActivity.swift in Sources */,
-				9CDFBD3B28872686005CD08A /* ISODateFormatter.swift in Sources */,
+				9CDFBD3B28872686005CD08A /* QueryDateFormatter.swift in Sources */,
 				9CDDFB042879D5BB005EC7D5 /* DataSource.swift in Sources */,
 				9C2FA6D728758AB30095FDFD /* Query.swift in Sources */,
 				9C4C95F82869D2A000AE5371 /* MainView.swift in Sources */,
@@ -384,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C55663C2862114600CB77BB /* TakeoutFilterTests.swift in Sources */,
+				9CAD801628886BC400C2A814 /* QueryDateFormatterTests.swift in Sources */,
 				9CDFBD362886F30C005CD08A /* FilterTests.swift in Sources */,
 				9CDFBD38288708EF005CD08A /* DataSourceTests.swift in Sources */,
 				9C4EBC752885844000302F50 /* PorterStemmerTests.swift in Sources */,

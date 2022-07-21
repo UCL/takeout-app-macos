@@ -37,7 +37,6 @@ class JsonFilter: FilterBase, Filter {
             return filterOutput
         } catch {
             var output = FilterOutput()
-            print("AAAAAAAAAAAAAA \(error)")
             output.outcome = .error
             return output
         }

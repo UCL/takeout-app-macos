@@ -19,6 +19,6 @@ struct MyActivityHtml {
     
     let type: String
     let query: String
-    let date: String
+    let date: Date
     
 }

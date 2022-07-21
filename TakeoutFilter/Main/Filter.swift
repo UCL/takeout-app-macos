@@ -87,8 +87,7 @@ extension Filter {
         for n in names {
             queryText = myActivityHtmlItem.query.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
         }
-        let qDate = parseQueryDate(myActivityHtmlItem.date)
-        return Query(query: queryText, date: qDate)
+        return Query(query: queryText, date: myActivityHtmlItem.date)
     }
     
     func containsTerm(query: String, stemmer: PorterStemmer, dataAccess: DataAccess) throws -> Bool {
@@ -101,4 +100,5 @@ extension Filter {
     func parseQueryDate(_ date: String) -> Date {
         return FilterBase.dateFormatter.date(from: date)!
     }
+
 }

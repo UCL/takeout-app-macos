@@ -10,17 +10,40 @@ import SwiftSoup
 
 class HtmlFilter: FilterBase, Filter {
     
+    private var htmlDateFormatter: DateFormatter = UsDateFormatter().obtainFormatter()
+    
     private func selectChildren(_ element: Element) throws -> MyActivityHtml {
-        let parent = element.parent()
-        let qType = try parent?.children().get(0).text()
-        let qQuery = try parent?.children().get(1).text()
-        let qDate = try parent?.children().get(3).text()
-        return MyActivityHtml(type: qType!, query: qQuery!, date: qDate!)
+        let parent = element.parent()!
+        let childNodes = parent.children()
+        let textNodes = parent.textNodes()
+        let qType = textNodes[0].text()
+        let qQuery = try childNodes.get(0).text()
+        let qDate = parseHtmlDate(textNodes[1].text())
+        return MyActivityHtml(type: qType, query: qQuery, date: qDate)
     }
     
     private func isValidElement(_ element: Element) -> Bool {
         let parent = element.parent()
-        return parent?.childNode(0) != nil && parent?.childNode(1) != nil && parent?.childNode(3) != nil
+        guard let p = parent else {
+            return false
+        }
+        guard p.children().count >= 2 else {
+            return false
+        }
+        guard p.textNodes().count == 2 else {
+            return false
+        }
+        return true
+    }
+    
+    private func parseHtmlDate(_ date: String) -> Date {
+        return htmlDateFormatter.date(from: date)!
+    }
+    
+    private func isDateWithinTwoYearsBeforePresentation(queryDate: Date, presentationDate: Date) -> Bool {
+        let twoYearsPresDate = presentationDate.addingTimeInterval(-60 * 60 * 24 * 365 * 2)
+        let result = queryDate >= twoYearsPresDate && queryDate <= presentationDate
+        return result
     }
     
     func filterQueries(content: String, presentationDate: Date, namesToFilter: String) -> FilterOutput {
@@ -33,16 +56,17 @@ class HtmlFilter: FilterBase, Filter {
             let baseFiltered = try searches
                 .filter { isValidElement($0) }
                 .map { try selectChildren($0) }
-                .filter { $0.type.starts(with: "S") }
+                .filter { $0.type.contains("Searched for") }
             var filterOutput: FilterOutput = FilterOutput()
             filterOutput.firstQueryDate = baseFiltered
-                .map {parseQueryDate($0.date)}
+                .map {$0.date}
                 .min()!
             filterOutput.totalNumberOfQueries = baseFiltered.count
             filterOutput.filteredQueries = try baseFiltered
                 .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.date, presentationDate: presentationDate)}
                 .map {removeNameTokens(myActivityHtmlItem: $0, namesToFilter: namesToFilter)}
                 .filter {try containsTerm(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
+            filterOutput.outcome = .success
             return filterOutput
         } catch {
             return FilterOutput()
