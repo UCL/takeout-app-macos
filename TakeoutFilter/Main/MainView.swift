@@ -10,14 +10,13 @@ import SwiftUI
 struct MainView: View {
     
     @State
-    var spreadsheetUrl: URL = FileManager().homeDirectoryForCurrentUser
-        .appendingPathComponent("master-list.csv")
+    var spreadsheetUrl: URL?
     
     @State
-    var inputFolderUrl: URL = FileManager().homeDirectoryForCurrentUser
+    var inputFolderUrl: URL?
     
     @State
-    var outputFolderUrl: String = ""
+    var outputFolderUrl: URL?
     
     @State
     private var displayMessage = false
@@ -50,7 +49,7 @@ struct MainView: View {
                             Text("Select")
                         }
                         
-                        Text(inputFolderUrl.path)
+                        Text(readPathFromUrl(from: inputFolderUrl))
                             .frame(minWidth: 400, alignment: .leading)
                     }
                     
@@ -68,7 +67,7 @@ struct MainView: View {
                             Text("Select")
                         }
                         
-                        Text(spreadsheetUrl.lastPathComponent)
+                        Text(readPathFromUrl(from: spreadsheetUrl))
                             .frame(minWidth: 400, alignment: .leading)
                     }
                     
@@ -86,7 +85,7 @@ struct MainView: View {
                             Text("Select")
                         }
                         
-                        Text("\(outputFolderUrl)")
+                        Text(readPathFromUrl(from: outputFolderUrl))
                             .frame(minWidth: 400, alignment: .leading)
                     }
                 }
@@ -115,7 +114,7 @@ struct MainView: View {
     
     func readOutputFolderUrl(from url: URL?) {
         guard let url = url else { return }
-        outputFolderUrl = url.path
+        outputFolderUrl = url
     }
     
     func readSpreadsheetUrl(from url: URL?) {
@@ -123,12 +122,19 @@ struct MainView: View {
         spreadsheetUrl = url
     }
     
+    func readPathFromUrl(from url: URL?) -> String {
+        guard let url = url else {
+            return ""
+        }
+        return url.path
+    }
+    
     func progressCallback(_ progress: Double) {
         filteringProgress = progress
     }
     
     func runFilter() {
-        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl, progress: progressCallback)
+        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl, outputDir: outputFolderUrl, progress: progressCallback)
         displayMessage = true
         // Implement
     }
