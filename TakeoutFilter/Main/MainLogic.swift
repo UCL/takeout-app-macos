@@ -19,7 +19,7 @@ struct MainLogic {
     }
     
     private func getFilePath(id: Int, activityPath: ActivityPath) -> String {
-        return "\(id)\(activityPath)"
+        return "\(id)\(activityPath.rawValue)"
     }
     
     private let jsonFilter: Filter = JsonFilter()
@@ -47,12 +47,11 @@ struct MainLogic {
         return response == .OK ? openPanel.url : nil
     }
     
-    private func doFilterAndWrite(entry: Catalogue.Entry, activityFile: URL, filter: Filter, outputDirUrl: URL) throws {
+    private func doFilterAndWrite(entry: Catalogue.Entry, activityFile: URL, filter: Filter) throws {
         let activityContent: String = try String(contentsOf: activityFile)
         // Run Filter
         let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
         // Write to CSV
-        csvWriter.setOutputUrl(outputDirUrl)
         try csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
         try csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
     }
@@ -62,6 +61,12 @@ struct MainLogic {
         guard let sourceDir = sourceDir else { return FilterPayback(id: FilterResultType.error, message: "Cannot find source directory URL") }
         guard let outputDir = outputDir else {
             return FilterPayback(id: FilterResultType.error, message: "Cannot find output directory URL")
+        }
+        
+        do {
+            try csvWriter.configureOutput(outputDir)
+        } catch {
+            return FilterPayback(id: FilterResultType.error, message: "Cannot configure output directory")
         }
 
         for entry in Catalogue(catalogue: catalogue).entries() {
@@ -73,22 +78,22 @@ struct MainLogic {
                 }
                 try Zip.unzipFile(takeoutUrl, destination: destinationUrl, overwrite: true, password: nil)
                 // Try for JSON file
-                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .json))) {
-                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .json))
-                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: jsonFilter, outputDirUrl: outputDir)
+                let jsonUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .json))
+                if (FileManager.default.fileExists(atPath: jsonUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonUrl, filter: jsonFilter)
                 }
-                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .jsonSpace))) {
-                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpace))
-                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: jsonFilter, outputDirUrl: outputDir)
+                let jsonSpaceUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpace))
+                if (FileManager.default.fileExists(atPath: jsonSpaceUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonSpaceUrl, filter: jsonFilter)
                 }
                 // Try for HTML file
-                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .html))) {
-                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .html))
-                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: htmlFilter, outputDirUrl: outputDir)
+                let htmlUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .html))
+                if (FileManager.default.fileExists(atPath: htmlUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlUrl, filter: htmlFilter)
                 }
-                if (FileManager.default.fileExists(atPath: getFilePath(id: entry.getId(), activityPath: .htmlSpace))) {
-                    let activityFile: URL = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpace))
-                    try doFilterAndWrite(entry: entry, activityFile: activityFile, filter: htmlFilter, outputDirUrl: outputDir)
+                let htmlSpaceUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpace))
+                if (FileManager.default.fileExists(atPath: htmlSpaceUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlSpaceUrl, filter: htmlFilter)
                 }
                 // Default throw
             } catch {

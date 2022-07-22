@@ -71,7 +71,7 @@
 		9C4C95F92869D38100AE5371 /* MainLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainLogic.swift; path = Main/MainLogic.swift; sourceTree = "<group>"; };
 		9C4C95FB286A051500AE5371 /* Catalogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Catalogue.swift; path = Main/Catalogue.swift; sourceTree = "<group>"; };
 		9C4EBC742885844000302F50 /* PorterStemmerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorterStemmerTests.swift; sourceTree = "<group>"; };
-		9C5566262862114100CB77BB /* TakeoutFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeoutFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5566262862114100CB77BB /* TakeoutFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TakeoutFilter.app; path = ../Release/TakeoutFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5566292862114100CB77BB /* TakeoutFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeoutFilterApp.swift; sourceTree = "<group>"; };
 		9C55662D2862114600CB77BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C5566302862114600CB77BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
