@@ -52,12 +52,12 @@ struct MainLogic {
         // Run Filter
         let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
         // Write to CSV
-        try csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
         try csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
+        try csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
     }
     
     func filter(catalogue: URL?, sourceDir: URL?, outputDir: URL?, progress: (Double) -> Void) -> FilterPayback {
-        guard let catalogue = catalogue else { return FilterPayback(id: FilterResultType.error, message: "Cannot find catalogue at given URL") }
+        guard let catalogueUrl = catalogue else { return FilterPayback(id: FilterResultType.error, message: "Cannot find catalogue at given URL") }
         guard let sourceDir = sourceDir else { return FilterPayback(id: FilterResultType.error, message: "Cannot find source directory URL") }
         guard let outputDir = outputDir else {
             return FilterPayback(id: FilterResultType.error, message: "Cannot find output directory URL")
@@ -68,8 +68,10 @@ struct MainLogic {
         } catch {
             return FilterPayback(id: FilterResultType.error, message: "Cannot configure output directory")
         }
-
-        for entry in Catalogue(catalogue: catalogue).entries() {
+        let c = Catalogue(catalogue: catalogueUrl)
+        let catalogueEntries = c.entries()
+        let catalogueSize = catalogueEntries.count
+        for (index, entry) in catalogueEntries.enumerated() {
             let takeoutUrl: URL = sourceDir.appendingPathComponent("\(entry.getId()).zip")
             do {
                 let destinationUrl: URL = sourceDir.appendingPathComponent("\(entry.getId())")
@@ -99,6 +101,8 @@ struct MainLogic {
             } catch {
                 return FilterPayback(id: FilterResultType.error, message: "Failed to run filter \(error)")
             }
+            let prog = Double(index + 1) / Double(catalogueSize) * 100
+            progress(prog)
         }
         return FilterPayback(id: FilterResultType.success, message: "Filtering complete")
     }
