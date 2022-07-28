@@ -2,7 +2,7 @@
 
 MacOS desktop application for processing Google Takeout export files.
 
-![GitHub release](https://img.shields.io/github/release/UCL/takeout-app-macos.svg)
+![GitHub release](https://img.shields.io/github/v/release/UCL/takeout-app-macos)
 
 ## Installation
 
