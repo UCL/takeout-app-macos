@@ -1,0 +1,45 @@
+[{
+    "header": "Search",
+    "title": "Searched for uk population centres",
+    "titleUrl": "https://www.google.com/search?q\u003duk+population+centres",
+    "time": "2021-02-25T16:51:54.270Z",
+    "products": ["Search"],
+    "locationInfos": [{
+        "name": "At this general area",
+        "url": "https://www.google.com/maps/@?api\u003d1\u0026map_action\u003dmap\u0026center\u003d51.525450,-0.129252\u0026zoom\u003d9",
+        "source": "Based on your past activity"
+    }]
+},{
+    "header": "Search",
+    "title": "Searched for population health",
+    "titleUrl": "https://www.google.com/search?q\u003dpopulation+health",
+    "time": "2021-02-25T15:27:07.188Z",
+    "products": ["Search"],
+    "locationInfos": [{
+        "name": "At this general area",
+        "url": "https://www.google.com/maps/@?api\u003d1\u0026map_action\u003dmap\u0026center\u003d51.525450,-0.129252\u0026zoom\u003d9",
+        "source": "Based on your past activity"
+    }]
+},{
+    "header": "Search",
+    "title": "Searched for nhs covid vaccine risks",
+    "titleUrl": "https://www.google.com/search?q\u003dnhs+covid+vaccine+risks",
+    "time": "2021-02-23T18:34:18.478Z",
+    "products": ["Search"],
+    "locationInfos": [{
+        "name": "At this general area",
+        "url": "https://www.google.com/maps/@?api\u003d1\u0026map_action\u003dmap\u0026center\u003d51.525450,-0.129252\u0026zoom\u003d11",
+        "source": "Based on your past activity"
+    }]
+},{
+    "header": "Search",
+    "title": "Searched for uk population 2021",
+    "titleUrl": "https://www.google.com/search?q\u003duk+population+2021",
+    "time": "2021-02-15T15:45:11.263Z",
+    "products": ["Search"],
+    "locationInfos": [{
+        "name": "At this general area",
+        "url": "https://www.google.com/maps/@?api\u003d1\u0026map_action\u003dmap\u0026center\u003d51.546546,-0.144634\u0026zoom\u003d11",
+        "source": "Based on your past activity"
+    }]
+}]

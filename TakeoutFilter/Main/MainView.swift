@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  TakeoutFilter
 //
 //  Created by David Guzman on 21/06/2022.
@@ -7,16 +7,27 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     @State
-    var spreadsheetUrl: String = ""
+    var spreadsheetUrl: URL?
     
     @State
-    var inputFolderUrl: String = ""
+    var inputFolderUrl: URL?
     
     @State
-    var outputFolderUrl: String = ""
+    var outputFolderUrl: URL?
+    
+    @State
+    private var displayMessage = false
+    
+    @State
+    private var filterPayback: FilterPayback?
+    
+    @State
+    private var filteringProgress: Double = 0.0
+    
+    let logic = MainLogic()
     
     var body: some View {
         VStack {
@@ -32,13 +43,14 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openFolderUrl = openFolder()
+                            let openFolderUrl = logic.openFolder()
                             readInputFolderUrl(from: openFolderUrl)
                         }) {
                             Text("Select")
                         }
                         
-                        Text("\(inputFolderUrl)")
+                        Text(readPathFromUrl(from: inputFolderUrl))
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                     
                 }.padding(.bottom)
@@ -49,13 +61,14 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openSpreadsheetUrl = openSpreadsheet()
+                            let openSpreadsheetUrl = logic.openCsvFile()
                             readSpreadsheetUrl(from: openSpreadsheetUrl)
                         }) {
                             Text("Select")
                         }
                         
-                        Text("\(spreadsheetUrl)")
+                        Text(readPathFromUrl(from: spreadsheetUrl))
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                     
                 }.padding(.bottom)
@@ -66,13 +79,14 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            let openFolderUrl = openFolder()
+                            let openFolderUrl = logic.openFolder()
                             readOutputFolderUrl(from: openFolderUrl)
                         }) {
                             Text("Select")
                         }
                         
-                        Text("\(outputFolderUrl)")
+                        Text(readPathFromUrl(from: outputFolderUrl))
+                            .frame(minWidth: 400, alignment: .leading)
                     }
                 }
                 
@@ -80,54 +94,61 @@ struct ContentView: View {
             
             Button(action: runFilter) {
                 Text("Run filter")
+            }
+            
+            VStack {
+                ProgressView("Filtering... ", value: filteringProgress, total: 100)
             }.padding()
             
+            .alert("Notification", isPresented: $displayMessage, presenting: filterPayback, actions: {payback in
+                    Text("")}, message:{payback in Text(payback.message)})
+            
+
         }
-    }
-    
-    func openFolder() -> URL? {
-        let openPanel = NSOpenPanel()
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = true
-        openPanel.canChooseFiles = false
-        
-        let response = openPanel.runModal()
-        return response == .OK ? openPanel.url : nil
     }
     
     func readInputFolderUrl(from url: URL?) {
         guard let url = url else { return }
-        inputFolderUrl = url.path
+        inputFolderUrl = url
     }
     
     func readOutputFolderUrl(from url: URL?) {
         guard let url = url else { return }
-        outputFolderUrl = url.path
-    }
-    
-    func openSpreadsheet() -> URL? {
-        let openPanel = NSOpenPanel()
-        openPanel.allowedContentTypes = [.commaSeparatedText]
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = false
-        openPanel.canChooseFiles = true
-        
-        let response = openPanel.runModal()
-        return response == .OK ? openPanel.url : nil
+        outputFolderUrl = url
     }
     
     func readSpreadsheetUrl(from url: URL?) {
         guard let url = url else { return }
-        spreadsheetUrl = url.lastPathComponent
+        spreadsheetUrl = url
+    }
+    
+    func readPathFromUrl(from url: URL?) -> String {
+        guard let url = url else {
+            return ""
+        }
+        return url.path
+    }
+    
+    func progressCallback(_ progress: Double) {
+        filteringProgress = progress
     }
     
     func runFilter() {
-        // Implement
+        filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl, outputDir: outputFolderUrl, progress: progressCallback)
+        displayMessage = true
+        reset()
+    }
+    
+    private func reset() {
+        filteringProgress = 0
+        inputFolderUrl = nil
+        outputFolderUrl = nil
+        spreadsheetUrl = nil
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }
