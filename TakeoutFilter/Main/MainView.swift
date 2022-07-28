@@ -136,7 +136,14 @@ struct MainView: View {
     func runFilter() {
         filterPayback = logic.filter(catalogue: spreadsheetUrl, sourceDir: inputFolderUrl, outputDir: outputFolderUrl, progress: progressCallback)
         displayMessage = true
-        // Implement
+        reset()
+    }
+    
+    private func reset() {
+        filteringProgress = 0
+        inputFolderUrl = nil
+        outputFolderUrl = nil
+        spreadsheetUrl = nil
     }
 }
 
