@@ -2,11 +2,11 @@
 
 MacOS desktop application for processing Google Takeout export files.
 
-![GitHub release](https://img.shields.io/github/release/UCL/takeout-app-macos.svg)
+![GitHub release](https://img.shields.io/github/v/release/UCL/takeout-app-macos)
 
 ## Installation
 
-Download and move to `/Applications` folder. It runs on MacOS Monterey 12.4.
+Download, unzip, and move package to `/Applications` folder. Application runs on MacOS Monterey 12.4.
 
 ## Usage
 
