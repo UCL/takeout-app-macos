@@ -4,18 +4,15 @@ MacOS desktop application for processing Google Takeout export files.
 
 ![GitHub release](https://img.shields.io/github/release/UCL/takeout-app-macos.svg)
 
-
-## Installation
+## Installation
 
 Download and move to `/Applications` folder. It runs on MacOS Monterey 12.4.
 
-
-## Usage
+## Usage
 
 The application extracts and filters search activity data from Google Takeout exports. All exports must be present in a single folder.
 
-
-### Input files
+### Input files
 
 The application accepts Takeout export files in ZIP format, where the MyActivity report is in either JSON or HTML format.
 
