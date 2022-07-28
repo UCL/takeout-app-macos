@@ -4,13 +4,16 @@ MacOS desktop application for processing Google Takeout export files.
 
 ![GitHub release](https://img.shields.io/github/release/UCL/takeout-app-macos.svg)
 
+
 ## Installation
 
 Download and move to `/Applications` folder. It runs on MacOS Monterey 12.4.
 
+
 ## Usage
 
 The application extracts and filters search activity data from Google Takeout exports. All exports must be present in a single folder.
+
 
 ### Input files
 
@@ -52,3 +55,5 @@ Please use the Github issue tracker for any bugs or feature suggestions:
 ## Authors
 
 - David Guzman (Github: [@david-guzman](https://github.com/david-guzman))
+
+Except `porterstemmer_ansi_thread_safe.c`, The Porter Stemming Algorithm, by Martin Porter [https://tartarus.org/martin/PorterStemmer/](https://tartarus.org/martin/PorterStemmer/)
