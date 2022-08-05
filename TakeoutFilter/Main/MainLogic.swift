@@ -13,9 +13,13 @@ struct MainLogic {
     
     private enum ActivityPath: String {
         case json = "/Takeout/My Activity/Search/MyActivity.json"
+        case jsonTakeout2 = "/Takeout 2/My Activity/Search/MyActivity.json"
         case jsonSpace = "/Takeout/My Activity/Search/My Activity.json"
+        case jsonSpaceTakeout2 = "/Takeout 2/My Activity/Search/My Activity.json"
         case html = "/Takeout/My Activity/Search/MyActivity.html"
+        case htmlTakeout2 = "/Takeout 2/My Activity/Search/MyActivity.html"
         case htmlSpace = "/Takeout/My Activity/Search/My Activity.html"
+        case htmlSpaceTakeout2 = "/Takeout 2/My Activity/Search/My Activity.html"
     }
     
     private func getFilePath(id: Int, activityPath: ActivityPath) -> String {
@@ -88,6 +92,14 @@ struct MainLogic {
                 if (FileManager.default.fileExists(atPath: jsonSpaceUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: jsonSpaceUrl, filter: jsonFilter)
                 }
+                let jsonTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonTakeout2))
+                if (FileManager.default.fileExists(atPath: jsonTakeout2Url.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonTakeout2Url, filter: jsonFilter)
+                }
+                let jsonSpaceTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpaceTakeout2))
+                if (FileManager.default.fileExists(atPath: jsonSpaceTakeout2Url.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonSpaceTakeout2Url, filter: jsonFilter)
+                }
                 // Try for HTML file
                 let htmlUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .html))
                 if (FileManager.default.fileExists(atPath: htmlUrl.path)) {
@@ -96,6 +108,14 @@ struct MainLogic {
                 let htmlSpaceUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpace))
                 if (FileManager.default.fileExists(atPath: htmlSpaceUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: htmlSpaceUrl, filter: htmlFilter)
+                }
+                let htmlTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlTakeout2))
+                if (FileManager.default.fileExists(atPath: htmlTakeout2Url.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlTakeout2Url, filter: htmlFilter)
+                }
+                let htmlSpaceTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpaceTakeout2))
+                if (FileManager.default.fileExists(atPath: htmlSpaceTakeout2Url.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlSpaceTakeout2Url, filter: htmlFilter)
                 }
                 // Default throw
             } catch {
