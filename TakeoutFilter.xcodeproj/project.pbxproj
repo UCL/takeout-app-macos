@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C03B7B6286B1D8700788D53 /* CatalogueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C03B7B5286B1D8700788D53 /* CatalogueTests.swift */; };
 		9C03B7B8286B2F3B00788D53 /* CatalogueSample.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9C03B7B7286B2F3B00788D53 /* CatalogueSample.csv */; };
+		9C13485C28A182F6001266DB /* MyActivityError.html in Resources */ = {isa = PBXBuildFile; fileRef = 9C13485B28A182F5001266DB /* MyActivityError.html */; };
 		9C2FA6D728758AB30095FDFD /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FA6D628758AB30095FDFD /* Query.swift */; };
 		9C2FA6D92875AFEC0095FDFD /* MyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */; };
 		9C2FA6DB2875CB670095FDFD /* FilterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FA6DA2875CB670095FDFD /* FilterOutput.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		9C03B7B5286B1D8700788D53 /* CatalogueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueTests.swift; sourceTree = "<group>"; };
 		9C03B7B7286B2F3B00788D53 /* CatalogueSample.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatalogueSample.csv; sourceTree = "<group>"; };
+		9C13485B28A182F5001266DB /* MyActivityError.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = MyActivityError.html; sourceTree = "<group>"; };
 		9C2FA6D628758AB30095FDFD /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Query.swift; path = Main/Query.swift; sourceTree = "<group>"; };
 		9C2FA6D82875AFEC0095FDFD /* MyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyActivity.swift; path = Main/MyActivity.swift; sourceTree = "<group>"; };
 		9C2FA6DA2875CB670095FDFD /* FilterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterOutput.swift; path = Main/FilterOutput.swift; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 		9C4C95F92869D38100AE5371 /* MainLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainLogic.swift; path = Main/MainLogic.swift; sourceTree = "<group>"; };
 		9C4C95FB286A051500AE5371 /* Catalogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Catalogue.swift; path = Main/Catalogue.swift; sourceTree = "<group>"; };
 		9C4EBC742885844000302F50 /* PorterStemmerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PorterStemmerTests.swift; sourceTree = "<group>"; };
-		9C5566262862114100CB77BB /* TakeoutFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TakeoutFilter.app; path = ../Release/TakeoutFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5566262862114100CB77BB /* TakeoutFilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeoutFilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5566292862114100CB77BB /* TakeoutFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeoutFilterApp.swift; sourceTree = "<group>"; };
 		9C55662D2862114600CB77BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C5566302862114600CB77BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				9CDFBD37288708EF005CD08A /* DataSourceTests.swift */,
 				9CAD801328883E4D00C2A814 /* MyActivity.html */,
 				9CAD801528886BC400C2A814 /* QueryDateFormatterTests.swift */,
+				9C13485B28A182F5001266DB /* MyActivityError.html */,
 			);
 			path = TakeoutFilterTests;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C13485C28A182F6001266DB /* MyActivityError.html in Resources */,
 				9C03B7B8286B2F3B00788D53 /* CatalogueSample.csv in Resources */,
 				9CDFBD302886CF25005CD08A /* PorterStemmerInput.txt in Resources */,
 				9CDFBD342886F0CF005CD08A /* MyActivity.json in Resources */,
