@@ -77,6 +77,7 @@ extension Filter {
         for n in names {
             queryTitle = myActivityItem.title.replacingOccurrences(of: n, with: "", options: .caseInsensitive, range: nil)
         }
+        queryTitle = queryTitle.replacingOccurrences(of: "Searched for ", with: "")
         let qDate = parseQueryDate(myActivityItem.time)
         return Query(query: queryTitle, date: qDate)
     }
