@@ -11,6 +11,7 @@ import SwiftSoup
 class HtmlFilter: FilterBase, Filter {
     
     private var htmlDateFormatter: DateFormatter = UsDateFormatter().obtainFormatter()
+    private var bstDateFormatter: DateFormatter = BstDateFormatter().obtainFormatter()
     
     private func selectChildren(_ element: Element) throws -> MyActivityHtml {
         let parent = element.parent()!
@@ -37,7 +38,15 @@ class HtmlFilter: FilterBase, Filter {
     }
     
     private func parseHtmlDate(_ date: String) -> Date {
-        return htmlDateFormatter.date(from: date)!
+        let htmlDate: Date? = htmlDateFormatter.date(from: date)
+        if let htmlDate = htmlDate {
+            return htmlDate
+        }
+        let bstDate: Date? = bstDateFormatter.date(from: date)
+        if let bstDate = bstDate {
+            return bstDate
+        }
+        return Date(timeIntervalSince1970: 0)
     }
     
     private func isDateWithinTwoYearsBeforePresentation(queryDate: Date, presentationDate: Date) -> Bool {
@@ -58,6 +67,9 @@ class HtmlFilter: FilterBase, Filter {
                 .map { try selectChildren($0) }
                 .filter { $0.type.contains("Searched for") }
             var filterOutput: FilterOutput = FilterOutput()
+            if baseFiltered.isEmpty {
+                return filterOutput
+            }
             filterOutput.firstQueryDate = baseFiltered
                 .map {$0.date}
                 .min()!

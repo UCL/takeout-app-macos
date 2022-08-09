@@ -22,3 +22,11 @@ class UsDateFormatter: DateFormatter {
         return self
     }
 }
+
+class BstDateFormatter: DateFormatter {
+    
+    func obtainFormatter() -> DateFormatter {
+        dateFormat = "d MMM yyyy, HH:mm:ss zzz"
+        return self
+    }
+}

@@ -32,7 +32,7 @@ class FilterTests: XCTestCase {
         let instance: Filter = HtmlFilter()
         let result = instance.filterQueries(content: htmlContent, presentationDate: Date(), namesToFilter: "Forename Surname")
         XCTAssertEqual(result.outcome, .success)
-        XCTAssertEqual(result.totalNumberOfQueries, 3)
+        XCTAssertEqual(result.totalNumberOfQueries, 4)
         let expectedDate = UsDateFormatter().obtainFormatter().date(from: "Feb 15, 2021, 4:45:11 PM BST")
         XCTAssertEqual(result.firstQueryDate, expectedDate)
         XCTAssertEqual(result.filteredQueries.count, 3)
@@ -44,11 +44,9 @@ class FilterTests: XCTestCase {
         let htmlContent = try! String(contentsOf: htmlUrl)
         let instance: Filter = HtmlFilter()
         let result = instance.filterQueries(content: htmlContent, presentationDate: Date(), namesToFilter: "Forename Surname")
-        XCTAssertEqual(result.outcome, .success)
-        XCTAssertEqual(result.totalNumberOfQueries, 3)
-        let expectedDate = UsDateFormatter().obtainFormatter().date(from: "Feb 15, 2021, 4:45:11 PM BST")
-        XCTAssertEqual(result.firstQueryDate, expectedDate)
-        XCTAssertEqual(result.filteredQueries.count, 2)
+        XCTAssertEqual(result.outcome, .unknown)
+        XCTAssertEqual(result.totalNumberOfQueries, 0)
+        XCTAssertEqual(result.filteredQueries.count, 0)
     }
 
 }
