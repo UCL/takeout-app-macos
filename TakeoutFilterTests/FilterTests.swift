@@ -19,7 +19,7 @@ class FilterTests: XCTestCase {
         let instance: Filter = JsonFilter()
         let result = instance.filterQueries(content: jsonContent, presentationDate: Date(), namesToFilter: "Forename Surname")
         XCTAssertEqual(result.outcome, .success)
-        XCTAssertEqual(result.totalNumberOfQueries, 4)
+        XCTAssertEqual(result.totalNumberOfQueries, 5)
         let expectedDate = ISODateFormatter().obtainFormatter().date(from: "2021-02-15")
         XCTAssertEqual(result.firstQueryDate, expectedDate)
         XCTAssertEqual(result.filteredQueries.count, 4)

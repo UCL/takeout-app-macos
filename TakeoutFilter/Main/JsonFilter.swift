@@ -23,7 +23,7 @@ class JsonFilter: FilterBase, Filter {
         do {
             let queries = try JSONDecoder().decode([MyActivity].self, from: data)
             let baseFiltered = queries
-                .filter {$0.title.starts(with: "Searched for ")}
+                .filter {$0.title.starts(with: "Searched for ") || $0.title.starts(with: "Has buscado ")}
             var filterOutput: FilterOutput = FilterOutput()
             filterOutput.firstQueryDate = baseFiltered
                 .map {parseQueryDate($0.time)}
