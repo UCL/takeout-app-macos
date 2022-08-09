@@ -19,4 +19,14 @@ class QueryDateFormatterTests: XCTestCase {
         let expected = dateFormatter.date(from: input)
         XCTAssertEqual(actual, expected)
     }
+    
+    func testFormatBstDate() {
+        let formatter: DateFormatter = BstDateFormatter().obtainFormatter()
+        let input = "4 May 2021, 18:01:34 GMT"
+        let actual = formatter.date(from: input)
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy, HH:mm:ss zzz"
+        let expected = dateFormatter.date(from: input)
+        XCTAssertEqual(actual, expected)
+    }
 }
