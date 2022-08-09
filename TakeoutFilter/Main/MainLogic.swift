@@ -14,12 +14,16 @@ struct MainLogic {
     private enum ActivityPath: String {
         case json = "/Takeout/My Activity/Search/MyActivity.json"
         case jsonTakeout2 = "/Takeout 2/My Activity/Search/MyActivity.json"
+        case jsonEs = "/Takeout/Mi actividad/Búsqueda/MiActividad.json"
         case jsonSpace = "/Takeout/My Activity/Search/My Activity.json"
         case jsonSpaceTakeout2 = "/Takeout 2/My Activity/Search/My Activity.json"
+        case jsonSpaceEs = "/Takeout/Mi actividad/Búsqueda/Mi Actividad.json"
         case html = "/Takeout/My Activity/Search/MyActivity.html"
         case htmlTakeout2 = "/Takeout 2/My Activity/Search/MyActivity.html"
+        case htmlEs = "/Takeout/Mi actividad/Búsqueda/MiActividad.html"
         case htmlSpace = "/Takeout/My Activity/Search/My Activity.html"
         case htmlSpaceTakeout2 = "/Takeout 2/My Activity/Search/My Activity.html"
+        case htmlSpaceEs = "/Takeout/Mi actividad/Búsqueda/Mi Actividad.html"
     }
     
     private func getFilePath(id: Int, activityPath: ActivityPath) -> String {
@@ -88,9 +92,17 @@ struct MainLogic {
                 if (FileManager.default.fileExists(atPath: jsonUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: jsonUrl, filter: jsonFilter)
                 }
+                let jsonEsUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonEs))
+                if (FileManager.default.fileExists(atPath: jsonEsUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonEsUrl, filter: jsonFilter)
+                }
                 let jsonSpaceUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpace))
                 if (FileManager.default.fileExists(atPath: jsonSpaceUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: jsonSpaceUrl, filter: jsonFilter)
+                }
+                let jsonSpaceEsUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonSpaceEs))
+                if (FileManager.default.fileExists(atPath: jsonSpaceEsUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: jsonSpaceEsUrl, filter: jsonFilter)
                 }
                 let jsonTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .jsonTakeout2))
                 if (FileManager.default.fileExists(atPath: jsonTakeout2Url.path)) {
@@ -105,9 +117,17 @@ struct MainLogic {
                 if (FileManager.default.fileExists(atPath: htmlUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: htmlUrl, filter: htmlFilter)
                 }
+                let htmlEsUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlEs))
+                if (FileManager.default.fileExists(atPath: htmlEsUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlEsUrl, filter: htmlFilter)
+                }
                 let htmlSpaceUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpace))
                 if (FileManager.default.fileExists(atPath: htmlSpaceUrl.path)) {
                     try doFilterAndWrite(entry: entry, activityFile: htmlSpaceUrl, filter: htmlFilter)
+                }
+                let htmlSpaceEsUrl = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlSpaceEs))
+                if (FileManager.default.fileExists(atPath: htmlSpaceEsUrl.path)) {
+                    try doFilterAndWrite(entry: entry, activityFile: htmlSpaceEsUrl, filter: htmlFilter)
                 }
                 let htmlTakeout2Url = sourceDir.appendingPathComponent(getFilePath(id: entry.getId(), activityPath: .htmlTakeout2))
                 if (FileManager.default.fileExists(atPath: htmlTakeout2Url.path)) {
