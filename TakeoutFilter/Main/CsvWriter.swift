@@ -19,6 +19,8 @@ class CsvWriter {
     private let aggregatesSuffix: String = "-aggregates.csv"
     private let queriesHeader: String = "Date,Query"
     private let queriesSuffix: String = "-queries.csv"
+    private let queriesPhraseSuffix: String = "-queries-phrase.csv"
+    private let queriesAllSuffix: String = "-queries-all.csv"
     private let newline: String = "\n"
     private let outputDir: String = "TakeoutFilter"
     private var outputDirUrl: URL?
@@ -32,6 +34,14 @@ class CsvWriter {
         return "\(id)\(queriesSuffix)"
     }
     
+    private func getQueriesPhraseFileName(_ id: Int) -> String {
+        return "\(id)\(queriesPhraseSuffix)"
+    }
+    
+    private func getQueriesAllFileName(_ id: Int) -> String {
+        return "\(id)\(queriesAllSuffix)"
+    }
+
     private func writeString(fileName: String, csvContent: String) throws {
         guard let output = outputDirUrl else {
             throw CsvError.outputDirNotFound
@@ -65,5 +75,23 @@ class CsvWriter {
                 .appending(newline)
         }
         try writeString(fileName: getQueriesFileName(id), csvContent: csvString)
+    }
+    
+    func writeQueriesPhrase(id: Int, queries: [Query]) throws {
+        var csvString = queriesHeader.appending(newline)
+        for q in queries {
+            csvString = csvString.appending("\(q.date),\(q.query)")
+                .appending(newline)
+        }
+        try writeString(fileName: getQueriesPhraseFileName(id), csvContent: csvString)
+    }
+    
+    func writeQueriesAll(id: Int, queries: [Query]) throws {
+        var csvString = queriesHeader.appending(newline)
+        for q in queries {
+            csvString = csvString.appending("\(q.date),\(q.query)")
+                .appending(newline)
+        }
+        try writeString(fileName: getQueriesAllFileName(id), csvContent: csvString)
     }
 }

@@ -24,7 +24,12 @@ class DataAccess {
     }
     
     func hasTermStemmed(_ stem: String) throws -> Bool {
-        return try dataSource.selectTrueWhereStem(stem: stem)
+        let result = try dataSource.selectTrueWhereStem(stem: stem)
+        return result
+    }
+    
+    func containsTermStemmed(_ query: String) throws -> Bool {
+        return try dataSource.selectTrueWhereMultiWordStem(phrase: query)
     }
 
 }

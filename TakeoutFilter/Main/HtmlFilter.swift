@@ -78,6 +78,14 @@ class HtmlFilter: FilterBase, Filter {
                 .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.date, presentationDate: presentationDate)}
                 .map {removeNameTokens(myActivityHtmlItem: $0, namesToFilter: namesToFilter)}
                 .filter {try containsTerm(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
+            filterOutput.filteredQueriesPhrase = try baseFiltered
+                .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.date, presentationDate: presentationDate)}
+                .map {removeNameTokens(myActivityHtmlItem: $0, namesToFilter: namesToFilter)}
+                .filter {try containsPhrase(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
+            filterOutput.filteredQueriesAll = try baseFiltered
+                .filter {isDateWithinTwoYearsBeforePresentation(queryDate: $0.date, presentationDate: presentationDate)}
+                .map {removeNameTokens(myActivityHtmlItem: $0, namesToFilter: namesToFilter)}
+                .filter {try containsAllTerms(query: $0.query, stemmer: porterStemmer, dataAccess: dataAccess)}
             filterOutput.outcome = .success
             return filterOutput
         } catch {

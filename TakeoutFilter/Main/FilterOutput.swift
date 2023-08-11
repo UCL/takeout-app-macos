@@ -13,6 +13,8 @@ struct FilterOutput {
     var totalNumberOfQueries: Int = 0
     var firstQueryDate: Date = Date()
     var filteredQueries: [Query] = []
+    var filteredQueriesAll: [Query] = []
+    var filteredQueriesPhrase: [Query] = []
 
 }
 

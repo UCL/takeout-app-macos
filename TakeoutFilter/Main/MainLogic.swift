@@ -61,6 +61,8 @@ struct MainLogic {
         let filterOutput: FilterOutput = filter.filterQueries(content: activityContent, presentationDate: entry.getDateOfPresentation(), namesToFilter: entry.getNamesToFilter())
         // Write to CSV
         try csvWriter.writeQueries(id: entry.getId(), queries: filterOutput.filteredQueries)
+        try csvWriter.writeQueriesPhrase(id: entry.getId(), queries: filterOutput.filteredQueriesPhrase)
+        try csvWriter.writeQueriesAll(id: entry.getId(), queries: filterOutput.filteredQueriesAll)
         try csvWriter.writeAggregates(id: entry.getId(), totalNumberQueries: filterOutput.totalNumberOfQueries, firstQueryDate: filterOutput.firstQueryDate)
     }
     

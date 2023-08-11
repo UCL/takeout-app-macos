@@ -75,7 +75,8 @@ extension DataSource {
         defer {
             sqlite3_finalize(queryStmt)
         }
-        guard sqlite3_bind_text(queryStmt, 1, term, -1, nil) == SQLITE_OK else {
+        let input: NSString = NSString(string: term)
+        guard sqlite3_bind_text(queryStmt, 1, input.utf8String, -1, nil) == SQLITE_OK else {
             throw DataSourceError.Bind(message: "Failed to bind String to statement")
         }
         guard sqlite3_step(queryStmt) == SQLITE_ROW else {
@@ -92,7 +93,29 @@ extension DataSource {
         defer {
             sqlite3_finalize(queryStmt)
         }
-        guard sqlite3_bind_text(queryStmt, 1, stem, -1, nil) == SQLITE_OK else {
+        let input: NSString = NSString(string: stem)
+        guard sqlite3_bind_text(queryStmt, 1, input.utf8String, -1, nil) == SQLITE_OK else {
+            throw DataSourceError.Bind(message: "Failed to bind String to statement")
+        }
+        guard sqlite3_step(queryStmt) == SQLITE_ROW else {
+            throw DataSourceError.Step(message: "Failed to run query and return row")
+        }
+        let query_result = sqlite3_column_int(queryStmt, 0)
+        // let sql = String(cString: sqlite3_expanded_sql(queryStmt))
+        
+        return query_result == 1
+    }
+    
+    func selectTrueWhereMultiWordStem(phrase: String) throws -> Bool {
+        let querySql = "SELECT EXISTS (SELECT 1 FROM T_MEDICAL_TERMS_MULTIWORD_STEMS WHERE STEM = ?);"
+        guard let queryStmt = try prepareStatement(statement: querySql) else {
+            return false
+        }
+        defer {
+            sqlite3_finalize(queryStmt)
+        }
+        let input: NSString = NSString(string: phrase)
+        guard sqlite3_bind_text(queryStmt, 1, input.utf8String, -1, nil) == SQLITE_OK else {
             throw DataSourceError.Bind(message: "Failed to bind String to statement")
         }
         guard sqlite3_step(queryStmt) == SQLITE_ROW else {
