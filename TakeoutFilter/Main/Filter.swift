@@ -102,7 +102,8 @@ extension Filter {
     
     // Function filters out words with less than 4 characters to match the stems in the database
     func containsAllTerms(query: String, stemmer: PorterStemmer, dataAccess: DataAccess) throws -> Bool {
-        return try extractWords(query)
+        let queryWithoutStopwords = removeStopwords(query)
+        return try extractWords(queryWithoutStopwords)
             .filter { $0.count > 3 }
             .map { stemmer.runStemmer($0) }
             .allSatisfy { try dataAccess.containsTermStemmed($0) }
